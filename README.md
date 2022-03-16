@@ -23,6 +23,6 @@ In this regard, the study has been conducted targeting java as programming langu
 ----------------
 
 Finally, we also release the maven projects that have been used in this study here: <a href="https://drive.google.com/drive/folders/1oDoQaIbHPb9kh8VDw0x2aE6Y7kkOFpBQ?usp=sharing">:open_file_folder:</a>
-<br>
-NB: For each project, we store the test suite results on the perturbated/original instance. 
-In other words, you will find several text files reporting the results after the test suite has been run in each project folder, considering that specific instance. E.g., *result_test_robustness_WorkflowRemoverTest_parseParameters_P0.txt* contains the results considering the first perturbation of the parseParameters method whose test case can be found in the test class WorkFlowRemoverTest.
+
+<b><i>NB: For each project, we store the test suite results on the perturbated/original instance. 
+In other words, you will find several text files reporting the results after the test suite has been run for each project folder, considering that specific instance. E.g., *result_test_robustness_WorkflowRemoverTest_parseParameters_P0.txt* contains the results considering the first perturbation of the parseParameters method whose test case can be found in the test class WorkFlowRemoverTest.</i></b>
