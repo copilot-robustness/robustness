@@ -1,0 +1,2961 @@
+index,project,relativePath,absolutePath,methodName,spanMethod,wholeMethod,body,javaDoc,coverage,tokensPerMethod,javaDocFirstSentence,tokensFirstLine,manuallyWrittenJavadoc,generatedResultManual,mvnTestResultManual
+212,anserini,io/anserini/index/IndexReaderUtils.java,/src/main/java/io/anserini/index/IndexReaderUtils.java,documentRaw,538-553,"/**
+   * Returns the ""raw"" field of a document based on a collection docid. The method is named to be consistent with
+   * Lucene's {@link IndexReader#document(int)}, contra Java's standard method naming conventions.
+   *
+   * @param reader index reader
+   * @param docid collection docid
+   * @return the ""raw"" field the document
+   */
+public static String documentRaw(IndexReader reader, String docid){
+    try {
+        return reader.document(convertDocidToLuceneDocid(reader, docid)).get(IndexArgs.RAW);
+    } catch (Exception e) {
+        return null;
+    }
+}","public static String documentRaw(IndexReader reader, String docid){
+    try {
+        return reader.document(convertDocidToLuceneDocid(reader, docid)).get(IndexArgs.RAW);
+    } catch (Exception e) {
+        return null;
+    }
+}","/**
+   * Returns the ""raw"" field of a document based on a collection docid. The method is named to be consistent with
+   * Lucene's {@link IndexReader#document(int)}, contra Java's standard method naming conventions.
+   *
+   * @param reader index reader
+   * @param docid collection docid
+   * @return the ""raw"" field the document
+   */","('documentRaw', {'INSTRUCTION': {'covered': 11, 'missed': 0}, 'LINE': {'covered': 3, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",46.0,"  Returns the ""raw"" field of a document based on a collection docid.",15.0,"By using a collection of docids returns the raw field of a document if possible, null otherwise"," public static String documentRaw(IndexReader reader, String docid){
+    try {
+      return reader.document(IndexReaderUtils.convertDocidToLuceneDocid(reader, docid)).get(IndexArgs.RAW);
+    } catch (Exception e) {
+      // Eat any exceptions and just return null.
+      return null;
+    }
+  }",PASS
+146,cdk,org/openscience/cdk/Bond.java,/base/data/src/main/java/org/openscience/cdk/Bond.java,atoms,158-174,"/**
+     * Returns the Iterator to atoms making up this bond.
+     * Iterator.remove() is not implemented.
+     *
+     * @return An Iterator to atoms participating in this bond
+     * @see #setAtoms
+     */
+public Iterable<IAtom> atoms(){
+    return new Iterable<IAtom>() {
+
+        @Override
+        public Iterator<IAtom> iterator() {
+            return new AtomsIterator();
+        }
+    };
+}","public Iterable<IAtom> atoms(){
+    return new Iterable<IAtom>() {
+
+        @Override
+        public Iterator<IAtom> iterator() {
+            return new AtomsIterator();
+        }
+    };
+}","/**
+     * Returns the Iterator to atoms making up this bond.
+     * Iterator.remove() is not implemented.
+     *
+     * @return An Iterator to atoms participating in this bond
+     * @see #setAtoms
+     */","('atoms', {'INSTRUCTION': {'covered': 5, 'missed': 0}, 'LINE': {'covered': 1, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",39.0,  Returns the Iterator to atoms making up this bond.,10.0,Returns a new Iterator to atoms participating in this bond,Not Valid,Not Valid
+903,cdk,org/openscience/cdk/layout/TemplateHandler.java,/tool/sdg/src/main/java/org/openscience/cdk/layout/TemplateHandler.java,mapTemplates,209-241,"/**
+     * Checks if one of the loaded templates is a substructure in the given
+     * Molecule. If so, it assigns the coordinates from the template to the
+     * respective atoms in the Molecule, and marks the atoms as ISPLACED.
+     *
+     * @param molecule The molecule to be check for potential templates
+     * @return True if there was a possible mapping
+     */
+public boolean mapTemplates(IAtomContainer molecule) throws CDKException{
+    for (Pattern anonPattern : elemPatterns) {
+        for (Map<IAtom, IAtom> atoms : anonPattern.matchAll(molecule).toAtomMap()) {
+            for (Map.Entry<IAtom, IAtom> e : atoms.entrySet()) {
+                e.getValue().setPoint2d(new Point2d(e.getKey().getPoint2d()));
+                e.getValue().setFlag(CDKConstants.ISPLACED, true);
+            }
+            if (!atoms.isEmpty())
+                return true;
+        }
+    }
+    for (Pattern anonPattern : anonPatterns) {
+        for (Map<IAtom, IAtom> atoms : anonPattern.matchAll(molecule).toAtomMap()) {
+            for (Map.Entry<IAtom, IAtom> e : atoms.entrySet()) {
+                e.getValue().setPoint2d(new Point2d(e.getKey().getPoint2d()));
+                e.getValue().setFlag(CDKConstants.ISPLACED, true);
+            }
+            if (!atoms.isEmpty())
+                return true;
+        }
+    }
+    return false;
+}","public boolean mapTemplates(IAtomContainer molecule) throws CDKException{
+    for (Pattern anonPattern : elemPatterns) {
+        for (Map<IAtom, IAtom> atoms : anonPattern.matchAll(molecule).toAtomMap()) {
+            for (Map.Entry<IAtom, IAtom> e : atoms.entrySet()) {
+                e.getValue().setPoint2d(new Point2d(e.getKey().getPoint2d()));
+                e.getValue().setFlag(CDKConstants.ISPLACED, true);
+            }
+            if (!atoms.isEmpty())
+                return true;
+        }
+    }
+    for (Pattern anonPattern : anonPatterns) {
+        for (Map<IAtom, IAtom> atoms : anonPattern.matchAll(molecule).toAtomMap()) {
+            for (Map.Entry<IAtom, IAtom> e : atoms.entrySet()) {
+                e.getValue().setPoint2d(new Point2d(e.getKey().getPoint2d()));
+                e.getValue().setFlag(CDKConstants.ISPLACED, true);
+            }
+            if (!atoms.isEmpty())
+                return true;
+        }
+    }
+    return false;
+}","/**
+     * Checks if one of the loaded templates is a substructure in the given
+     * Molecule. If so, it assigns the coordinates from the template to the
+     * respective atoms in the Molecule, and marks the atoms as ISPLACED.
+     *
+     * @param molecule The molecule to be check for potential templates
+     * @return True if there was a possible mapping
+     */","('mapTemplates', {'INSTRUCTION': {'covered': 120, 'missed': 2}, 'BRANCH': {'covered': 14, 'missed': 2}, 'LINE': {'covered': 19, 'missed': 2}, 'COMPLEXITY': {'covered': 7, 'missed': 2}, 'METHOD': {'covered': 1, 'missed': 0}})",218.0,  Checks if one of the loaded templates is a substructure in the given  Molecule.,15.0,"If the atom's map is not empty, then for each atom in elemPatterns fetch its value and set a new Point2d element using the atom's key. Once the new 2d point has been created, also set its flag to true. Return false if success. Otherwise true if the atom's map is empty."," public boolean mapTemplates(IAtomContainer molecule) throws CDKException{
+        for (IAtomContainer template : templates) {
+            Mappings mappings = VentoFoggia.findIdentical(template, elemAtomMatcher, anonBondMatcher)
+                                            .matchAll(molecule);
+            for (Map<IAtom, IAtom> atoms : mappings.toAtomMap()) {
+                for (Map.Entry<IAtom, IAtom> e : atoms.entrySet()) {
+                    e.getValue().setPoint2d(new Point2d(e.getKey().getPoint2d()));
+                    e.getValue().setFlag(CDKConstants.ISPLACED, true);
+                }
+                if (!atoms.isEmpty())
+                    return false;
+            }
+        }
+        return true;
+    }",NOT PASS
+1050,acs-aem-commons,com/adobe/acs/commons/hc/impl/HealthCheckStatusEmailer.java,/bundle/src/main/java/com/adobe/acs/commons/hc/impl/HealthCheckStatusEmailer.java,sendEmail,218-260,"/**
+     * Creates the e-mail template parameter map and invokes the OSGi E-Mail Service.
+     *
+     * @param success the list of successful Health Check Execution Results
+     * @param failure the list of unsuccessful Health Check Execution Results
+     * @param timeTaken the time taken to execute all Health Checks
+     */
+protected final void sendEmail(final List<HealthCheckExecutionResult> success, final List<HealthCheckExecutionResult> failure, final long timeTaken){
+    final ProductInfo[] productInfos = productInfoService.getInfos();
+    final String hostname = getHostname();
+    final Map<String, String> emailParams = new HashMap<>();
+    emailParams.put(""subject"", String.format(""%s [ %d Failures ] [ %d Success ] [ %s ]"", emailSubject, failure.size(), success.size(), hostname));
+    emailParams.put(""failure"", resultToPlainText(""Failing Health Checks"", failure));
+    emailParams.put(""success"", resultToPlainText(""Successful Health Checks"", success));
+    emailParams.put(""executedAt"", Calendar.getInstance().getTime().toString());
+    emailParams.put(""runModes"", StringUtils.join(slingSettingsService.getRunModes(), "", ""));
+    emailParams.put(""mode"", ModeUtil.isAuthor() ? ""Author"" : ""Publish"");
+    emailParams.put(""hostname"", hostname);
+    emailParams.put(""timeTaken"", String.valueOf(timeTaken));
+    if (productInfos.length == 1) {
+        emailParams.put(""productName"", productInfos[0].getShortName());
+        emailParams.put(""productVersion"", productInfos[0].getShortVersion());
+    }
+    emailParams.put(""successCount"", String.valueOf(success.size()));
+    emailParams.put(""failureCount"", String.valueOf(failure.size()));
+    emailParams.put(""totalCount"", String.valueOf(failure.size() + success.size()));
+    if (ArrayUtils.isNotEmpty(recipientEmailAddresses)) {
+        final List<String> failureList = emailService.sendEmail(emailTemplatePath, emailParams, recipientEmailAddresses);
+        if (failureList.size() > 0) {
+            log.warn(""Could not send health status check e-mails to recipients [ {} ]"", StringUtils.join(failureList, "", ""));
+        } else {
+            log.info(""Successfully sent Health Check email to [ {} ] recipients"", recipientEmailAddresses.length - failureList.size());
+        }
+    } else {
+        log.warn(""No e-mail addresses provided to e-mail results of health checks. Either add the appropriate e-mail recipients or remove the health check status e-mail configuration entirely."");
+    }
+}","protected final void sendEmail(final List<HealthCheckExecutionResult> success, final List<HealthCheckExecutionResult> failure, final long timeTaken){
+    final ProductInfo[] productInfos = productInfoService.getInfos();
+    final String hostname = getHostname();
+    final Map<String, String> emailParams = new HashMap<>();
+    emailParams.put(""subject"", String.format(""%s [ %d Failures ] [ %d Success ] [ %s ]"", emailSubject, failure.size(), success.size(), hostname));
+    emailParams.put(""failure"", resultToPlainText(""Failing Health Checks"", failure));
+    emailParams.put(""success"", resultToPlainText(""Successful Health Checks"", success));
+    emailParams.put(""executedAt"", Calendar.getInstance().getTime().toString());
+    emailParams.put(""runModes"", StringUtils.join(slingSettingsService.getRunModes(), "", ""));
+    emailParams.put(""mode"", ModeUtil.isAuthor() ? ""Author"" : ""Publish"");
+    emailParams.put(""hostname"", hostname);
+    emailParams.put(""timeTaken"", String.valueOf(timeTaken));
+    if (productInfos.length == 1) {
+        emailParams.put(""productName"", productInfos[0].getShortName());
+        emailParams.put(""productVersion"", productInfos[0].getShortVersion());
+    }
+    emailParams.put(""successCount"", String.valueOf(success.size()));
+    emailParams.put(""failureCount"", String.valueOf(failure.size()));
+    emailParams.put(""totalCount"", String.valueOf(failure.size() + success.size()));
+    if (ArrayUtils.isNotEmpty(recipientEmailAddresses)) {
+        final List<String> failureList = emailService.sendEmail(emailTemplatePath, emailParams, recipientEmailAddresses);
+        if (failureList.size() > 0) {
+            log.warn(""Could not send health status check e-mails to recipients [ {} ]"", StringUtils.join(failureList, "", ""));
+        } else {
+            log.info(""Successfully sent Health Check email to [ {} ] recipients"", recipientEmailAddresses.length - failureList.size());
+        }
+    } else {
+        log.warn(""No e-mail addresses provided to e-mail results of health checks. Either add the appropriate e-mail recipients or remove the health check status e-mail configuration entirely."");
+    }
+}","/**
+     * Creates the e-mail template parameter map and invokes the OSGi E-Mail Service.
+     *
+     * @param success the list of successful Health Check Execution Results
+     * @param failure the list of unsuccessful Health Check Execution Results
+     * @param timeTaken the time taken to execute all Health Checks
+     */","('sendEmail', {'INSTRUCTION': {'covered': 162, 'missed': 12}, 'BRANCH': {'covered': 4, 'missed': 4}, 'LINE': {'covered': 23, 'missed': 2}, 'COMPLEXITY': {'covered': 1, 'missed': 4}, 'METHOD': {'covered': 1, 'missed': 0}})",389.0,  Creates the e-mail template parameter map and invokes the OSGi E-Mail Service.,13.0,"First fill in the map ""emailParams"" with the following information: (subject), (failure), (success), (executedAd), (runModes), (mode), (hostname), (timeTaken), (productName), (productVersion, (successCount), (failureCount), (totalCount) then try to send the email to the recepientEmailAddresses."," protected final void sendEmail(final List<HealthCheckExecutionResult> success, final List<HealthCheckExecutionResult> failure, final long timeTaken){
+        final Map<String, Object> emailParams = new HashMap<>();
+        final String subject = ""Health Check Status for "" + slingSettingsService.getSlingId() + "" at "" + new Date();
+        emailParams.put(""subject"", subject);
+        emailParams.put(""failure"", failure);
+        emailParams.put(""success"", success);
+        emailParams.put(""executedAd"", new Date());
+        emailParams.put(""runModes"", slingSettingsService.getRunModes());
+        emailParams.put(""mode"", slingSettingsService.getRunMode());
+        emailParams.put(""hostname"", getHostname());
+        emailParams.put(""timeTaken"", timeTaken);
+        emailParams.put(""productName"", productInfoService.getProductName());
+        emailParams.put(""productVersion"", productInfoService.getProductVersion());
+        emailParams.put(""successCount"", success.size());
+        emailParams.put(""failureCount"", failure.size());
+        emailParams.put(""totalCount"", success.size() + failure.size());
+        emailService.sendEmail(recipientEmailAddresses, emailTemplate, emailParams);
+    }",NOT PASS
+537,jackson-databind,com/fasterxml/jackson/databind/ObjectMapper.java,/src/main/java/com/fasterxml/jackson/databind/ObjectMapper.java,writeValueAsBytes,3830-3853,"/**
+     * Method that can be used to serialize any Java value as
+     * a byte array. Functionally equivalent to calling
+     * {@link #writeValue(Writer,Object)} with {@link java.io.ByteArrayOutputStream}
+     * and getting bytes, but more efficient.
+     * Encoding used will be UTF-8.
+     *<p>
+     * Note: prior to version 2.1, throws clause included {@link IOException}; 2.1 removed it.
+     */
+public byte[] writeValueAsBytes(Object value) throws JsonProcessingException{
+    try (ByteArrayBuilder bb = new ByteArrayBuilder(_jsonFactory._getBufferRecycler())) {
+        _writeValueAndClose(createGenerator(bb, JsonEncoding.UTF8), value);
+        final byte[] result = bb.toByteArray();
+        bb.release();
+        return result;
+    } catch (JsonProcessingException e) {
+        throw e;
+    } catch (IOException e) {
+        throw JsonMappingException.fromUnexpectedIOE(e);
+    }
+}","public byte[] writeValueAsBytes(Object value) throws JsonProcessingException{
+    try (ByteArrayBuilder bb = new ByteArrayBuilder(_jsonFactory._getBufferRecycler())) {
+        _writeValueAndClose(createGenerator(bb, JsonEncoding.UTF8), value);
+        final byte[] result = bb.toByteArray();
+        bb.release();
+        return result;
+    } catch (JsonProcessingException e) {
+        throw e;
+    } catch (IOException e) {
+        throw JsonMappingException.fromUnexpectedIOE(e);
+    }
+}","/**
+     * Method that can be used to serialize any Java value as
+     * a byte array. Functionally equivalent to calling
+     * {@link #writeValue(Writer,Object)} with {@link java.io.ByteArrayOutputStream}
+     * and getting bytes, but more efficient.
+     * Encoding used will be UTF-8.
+     *<p>
+     * Note: prior to version 2.1, throws clause included {@link IOException}; 2.1 removed it.
+     */","('writeValueAsBytes', {'INSTRUCTION': {'covered': 23, 'missed': 7}, 'LINE': {'covered': 5, 'missed': 4}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",90.0,  Method that can be used to serialize any Java value as  a byte array.,15.0,"Create a new ByteArrayBuilder object and use it to write the object ""value"" into it using JsonEncoding.UTF8 as encoding schema."," public byte[] writeValueAsBytes(Object value) throws JsonProcessingException{
+        ByteArrayBuilder bb = new ByteArrayBuilder(_jsonFactory._getBufferRecycler());
+        try {
+            _writeValueAndClose(createGenerator(bb, JsonEncoding.UTF8), value);
+        } catch (JsonProcessingException e) {
+            throw e;
+        } catch (IOException e) { // shouldn't really happen, but is declared as possibility so:
+            throw JsonMappingException.fromUnexpectedIOE(e);
+        }
+        return bb.toByteArray();
+    }",PASS
+712,dataverse,edu/harvard/iq/dataverse/engine/command/impl/AbstractDatasetCommand.java,/src/main/java/edu/harvard/iq/dataverse/engine/command/impl/AbstractDatasetCommand.java,tidyUpFields,118-138,"/**
+     * Removed empty fields, sets field value display order.
+     *
+     * @param dsv the dataset version show fields we want to tidy up.
+     */
+protected void tidyUpFields(DatasetVersion dsv){
+    Iterator<DatasetField> dsfIt = dsv.getDatasetFields().iterator();
+    while (dsfIt.hasNext()) {
+        if (dsfIt.next().removeBlankDatasetFieldValues()) {
+            dsfIt.remove();
+        }
+    }
+    Iterator<DatasetField> dsfItSort = dsv.getDatasetFields().iterator();
+    while (dsfItSort.hasNext()) {
+        dsfItSort.next().setValueDisplayOrder();
+    }
+    Iterator<DatasetField> dsfItTrim = dsv.getDatasetFields().iterator();
+    while (dsfItTrim.hasNext()) {
+        dsfItTrim.next().trimTrailingSpaces();
+    }
+}","protected void tidyUpFields(DatasetVersion dsv){
+    Iterator<DatasetField> dsfIt = dsv.getDatasetFields().iterator();
+    while (dsfIt.hasNext()) {
+        if (dsfIt.next().removeBlankDatasetFieldValues()) {
+            dsfIt.remove();
+        }
+    }
+    Iterator<DatasetField> dsfItSort = dsv.getDatasetFields().iterator();
+    while (dsfItSort.hasNext()) {
+        dsfItSort.next().setValueDisplayOrder();
+    }
+    Iterator<DatasetField> dsfItTrim = dsv.getDatasetFields().iterator();
+    while (dsfItTrim.hasNext()) {
+        dsfItTrim.next().trimTrailingSpaces();
+    }
+}","/**
+     * Removed empty fields, sets field value display order.
+     *
+     * @param dsv the dataset version show fields we want to tidy up.
+     */","('tidyUpFields', {'INSTRUCTION': {'covered': 30, 'missed': 10}, 'BRANCH': {'covered': 5, 'missed': 3}, 'LINE': {'covered': 9, 'missed': 2}, 'COMPLEXITY': {'covered': 2, 'missed': 3}, 'METHOD': {'covered': 1, 'missed': 0}})",127.0,"  Removed empty fields, sets field value display order.",10.0,"Given the DatasetVersion, remove all those empty fields, then order the values in the DatasetVersion object. Finally, trim from the DatasetVersion object all the trailing spaces."," protected void tidyUpFields(DatasetVersion dsv){
+        // remove all the empty fields
+        dsv.getDatasetFields().removeIf(df -> df.getSingleValue().isEmpty());
+        // order the fields
+        dsv.getDatasetFields().sort(DatasetField.COMPARATOR);
+        // trim the spaces
+        dsv.getDatasetFields().forEach(df -> df.setSingleValue(df.getSingleValue().trim()));
+    }",NOT PASS
+1001,cdk,org/openscience/cdk/smiles/CxSmilesParser.java,/storage/smiles/src/main/java/org/openscience/cdk/smiles/CxSmilesParser.java,processAtomLabels,62-124,"/**
+     * Process atom labels from extended SMILES in a char iter.
+     *
+     * @param iter char iteration
+     * @param dest destination of labels (atomidx->label)
+     * @return parse success/failure
+     */
+private static boolean processAtomLabels(final CharIter iter, final Map<Integer, String> dest){
+    int atomIdx = 0;
+    while (iter.hasNext()) {
+        // fast forward through empty labels
+        while (iter.nextIf(';')) atomIdx++;
+        char c = iter.next();
+        if (c == '$') {
+            // optional
+            iter.nextIf(',');
+            // end of atom label
+            return true;
+        } else {
+            // push back
+            iter.pos--;
+            int beg = iter.pos;
+            int rollback = beg;
+            while (iter.hasNext()) {
+                if (iter.pos == beg && iter.curr() == '_' && iter.peek() == 'R') {
+                    ++beg;
+                }
+                // correct step over of escaped label
+                if (iter.curr() == '&') {
+                    rollback = iter.pos;
+                    if (iter.nextIf('&') && iter.nextIf('#') && iter.nextIfDigit()) {
+                        // more digits
+                        while (iter.nextIfDigit()) {
+                        }
+                        if (!iter.nextIf(';')) {
+                            iter.pos = rollback;
+                        } else {
+                        }
+                    } else {
+                        iter.pos = rollback;
+                    }
+                } else if (iter.curr() == ';')
+                    break;
+                else if (iter.curr() == '$')
+                    break;
+                else
+                    iter.next();
+            }
+            dest.put(atomIdx, unescape(iter.substr(beg, iter.pos)));
+            atomIdx++;
+            if (iter.nextIf('$')) {
+                // optional
+                iter.nextIf(',');
+                return true;
+            }
+            if (!iter.nextIf(';'))
+                return false;
+        }
+    }
+    return false;
+}","private static boolean processAtomLabels(final CharIter iter, final Map<Integer, String> dest){
+    int atomIdx = 0;
+    while (iter.hasNext()) {
+        // fast forward through empty labels
+        while (iter.nextIf(';')) atomIdx++;
+        char c = iter.next();
+        if (c == '$') {
+            // optional
+            iter.nextIf(',');
+            // end of atom label
+            return true;
+        } else {
+            // push back
+            iter.pos--;
+            int beg = iter.pos;
+            int rollback = beg;
+            while (iter.hasNext()) {
+                if (iter.pos == beg && iter.curr() == '_' && iter.peek() == 'R') {
+                    ++beg;
+                }
+                // correct step over of escaped label
+                if (iter.curr() == '&') {
+                    rollback = iter.pos;
+                    if (iter.nextIf('&') && iter.nextIf('#') && iter.nextIfDigit()) {
+                        // more digits
+                        while (iter.nextIfDigit()) {
+                        }
+                        if (!iter.nextIf(';')) {
+                            iter.pos = rollback;
+                        } else {
+                        }
+                    } else {
+                        iter.pos = rollback;
+                    }
+                } else if (iter.curr() == ';')
+                    break;
+                else if (iter.curr() == '$')
+                    break;
+                else
+                    iter.next();
+            }
+            dest.put(atomIdx, unescape(iter.substr(beg, iter.pos)));
+            atomIdx++;
+            if (iter.nextIf('$')) {
+                // optional
+                iter.nextIf(',');
+                return true;
+            }
+            if (!iter.nextIf(';'))
+                return false;
+        }
+    }
+    return false;
+}","/**
+     * Process atom labels from extended SMILES in a char iter.
+     *
+     * @param iter char iteration
+     * @param dest destination of labels (atomidx->label)
+     * @return parse success/failure
+     */","('processAtomLabels', {'INSTRUCTION': {'covered': 118, 'missed': 10}, 'BRANCH': {'covered': 30, 'missed': 4}, 'LINE': {'covered': 34, 'missed': 2}, 'COMPLEXITY': {'covered': 14, 'missed': 4}, 'METHOD': {'covered': 1, 'missed': 0}})",309.0,  Process atom labels from extended SMILES in a char iter.,11.0,Process the atom labels.," private static boolean processAtomLabels(final CharIter iter, final Map<Integer, String> dest){
+        final StringBuilder sb = new StringBuilder();
+        while (iter.hasNext()){
+            final char c = iter.next();
+            if (c == COMMA_SEPARATOR){
+                dest.put(dest.size(), sb.toString());
+                sb.setLength(0);
+            } else if (c == DOT_SEPARATOR){
+                dest.put(dest.size(), sb.toString());
+                sb.setLength(0);
+                return true;
+            } else {
+                sb.append(c);
+            }
+        }
+        dest.put(dest.size(), sb.toString());
+        return true;            
+ }",NOT PASS
+983,dcache,org/dcache/poolmanager/WeightedAvailableSpaceSelection.java,/modules/dcache/src/main/java/org/dcache/poolmanager/WeightedAvailableSpaceSelection.java,selectByAvailableSpace,216-271,"/**
+     * Selects a pool from a list using the WASS algorithm.
+     * <p/>
+     * Returns null if all pools are full.
+     */
+public P selectByAvailableSpace(List<P> pools, long filesize, Function<P, PoolCostInfo> getCost){
+    int length = pools.size();
+    double[] available = new double[length];
+    double minLoad = Double.POSITIVE_INFINITY;
+    for (int i = 0; i < length; i++) {
+        PoolCostInfo info = getCost.apply(pools.get(i));
+        double free = getAvailable(info.getSpaceInfo(), filesize);
+        if (free > 0) {
+            available[i] = free;
+            minLoad = Math.min(minLoad, getLoad(info));
+        }
+    }
+    if (minLoad == Double.POSITIVE_INFINITY) {
+        return null;
+    }
+    double sum = 0.0;
+    for (int i = 0; i < length; i++) {
+        PoolCostInfo info = getCost.apply(pools.get(i));
+        double normalizedLoad = getLoad(info) - minLoad;
+        double weightedAvailable = getWeightedAvailable(info, available[i], normalizedLoad);
+        sum += weightedAvailable;
+        available[i] = sum;
+    }
+    double threshold = random() * sum;
+    for (int i = 0; i < length; i++) {
+        if (threshold < available[i]) {
+            return pools.get(i);
+        }
+    }
+    if (sum == Double.POSITIVE_INFINITY) {
+        throw new IllegalStateException(""WASS overflow: Configured space cost factor ("" + spaceCostFactor + "") is too large."");
+    }
+    throw new RuntimeException(""Unreachable statement."");
+}","public P selectByAvailableSpace(List<P> pools, long filesize, Function<P, PoolCostInfo> getCost){
+    int length = pools.size();
+    double[] available = new double[length];
+    double minLoad = Double.POSITIVE_INFINITY;
+    for (int i = 0; i < length; i++) {
+        PoolCostInfo info = getCost.apply(pools.get(i));
+        double free = getAvailable(info.getSpaceInfo(), filesize);
+        if (free > 0) {
+            available[i] = free;
+            minLoad = Math.min(minLoad, getLoad(info));
+        }
+    }
+    if (minLoad == Double.POSITIVE_INFINITY) {
+        return null;
+    }
+    double sum = 0.0;
+    for (int i = 0; i < length; i++) {
+        PoolCostInfo info = getCost.apply(pools.get(i));
+        double normalizedLoad = getLoad(info) - minLoad;
+        double weightedAvailable = getWeightedAvailable(info, available[i], normalizedLoad);
+        sum += weightedAvailable;
+        available[i] = sum;
+    }
+    double threshold = random() * sum;
+    for (int i = 0; i < length; i++) {
+        if (threshold < available[i]) {
+            return pools.get(i);
+        }
+    }
+    if (sum == Double.POSITIVE_INFINITY) {
+        throw new IllegalStateException(""WASS overflow: Configured space cost factor ("" + spaceCostFactor + "") is too large."");
+    }
+    throw new RuntimeException(""Unreachable statement."");
+}","/**
+     * Selects a pool from a list using the WASS algorithm.
+     * <p/>
+     * Returns null if all pools are full.
+     */","('selectByAvailableSpace', {'INSTRUCTION': {'covered': 108, 'missed': 16}, 'BRANCH': {'covered': 11, 'missed': 3}, 'LINE': {'covered': 22, 'missed': 3}, 'COMPLEXITY': {'covered': 6, 'missed': 2}, 'METHOD': {'covered': 1, 'missed': 0}})",281.0,  Selects a pool from a list using the WASS algorithm.,11.0,"Get the cost for each pool item, then use such value to check the available space left. If there is space, then use another array to keep track of the available space.",Empty Method,Empty Method
+476,cdk,org/openscience/cdk/renderer/visitor/AbstractAWTDrawVisitor.java,/display/renderawt/src/main/java/org/openscience/cdk/renderer/visitor/AbstractAWTDrawVisitor.java,transformPoint,45-58,"/**
+     * Transforms a point according to the current affine transformation,
+     * converting a world coordinate into a screen coordinate.
+     *
+     * @param xCoord x-coordinate of the world point to transform
+     * @param yCoord y-coordinate of the world point to transform
+     * @return       the transformed screen coordinate
+     */
+public int[] transformPoint(double xCoord, double yCoord){
+    double[] src = new double[] { xCoord, yCoord };
+    double[] dest = new double[2];
+    this.transform.transform(src, 0, dest, 0, 1);
+    return new int[] { (int) dest[0], (int) dest[1] };
+}","public int[] transformPoint(double xCoord, double yCoord){
+    double[] src = new double[] { xCoord, yCoord };
+    double[] dest = new double[2];
+    this.transform.transform(src, 0, dest, 0, 1);
+    return new int[] { (int) dest[0], (int) dest[1] };
+}","/**
+     * Transforms a point according to the current affine transformation,
+     * converting a world coordinate into a screen coordinate.
+     *
+     * @param xCoord x-coordinate of the world point to transform
+     * @param yCoord y-coordinate of the world point to transform
+     * @return       the transformed screen coordinate
+     */","('transformPoint', {'INSTRUCTION': {'covered': 39, 'missed': 0}, 'LINE': {'covered': 4, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",80.0,"  Transforms a point according to the current affine transformation,  converting a world coordinate into a screen coordinate.",19.0,"Given xCoord and yCoord as input, return a new int array with the transformed xCoord and yCoord."," public int[] transformPoint(double xCoord, double yCoord){
+        int[] xy = new int[2];
+        xy[0] = (int)Math.round(xCoord);
+        xy[1] = (int)Math.round(yCoord);
+        return xy;
+    }",PASS
+902,jooby,io/jooby/openapi/OpenAPIGenerator.java,/modules/jooby-openapi/src/main/java/io/jooby/openapi/OpenAPIGenerator.java,export,132-163,"/**
+   * Export an {@link OpenAPI} model to the given format.
+   *
+   * @param openAPI Model.
+   * @param format Format.
+   * @throws IOException
+   * @return Output file.
+   */
+public Path export(@Nonnull OpenAPI openAPI, @Nonnull Format format) throws IOException{
+    Path output;
+    if (openAPI instanceof OpenAPIExt) {
+        String source = ((OpenAPIExt) openAPI).getSource();
+        String[] names = source.split(""\\."");
+        output = Stream.of(names).limit(names.length - 1).reduce(outputDir, Path::resolve, Path::resolve);
+        String appname = names[names.length - 1];
+        if (appname.endsWith(""Kt"")) {
+            appname = appname.substring(0, appname.length() - 2);
+        }
+        output = output.resolve(appname + ""."" + format.extension());
+    } else {
+        output = outputDir.resolve(""openapi."" + format.extension());
+    }
+    if (!Files.exists(output.getParent())) {
+        Files.createDirectories(output.getParent());
+    }
+    String content = format.toString(this, openAPI);
+    Files.write(output, Collections.singleton(content));
+    return output;
+}","public Path export(@Nonnull OpenAPI openAPI, @Nonnull Format format) throws IOException{
+    Path output;
+    if (openAPI instanceof OpenAPIExt) {
+        String source = ((OpenAPIExt) openAPI).getSource();
+        String[] names = source.split(""\\."");
+        output = Stream.of(names).limit(names.length - 1).reduce(outputDir, Path::resolve, Path::resolve);
+        String appname = names[names.length - 1];
+        if (appname.endsWith(""Kt"")) {
+            appname = appname.substring(0, appname.length() - 2);
+        }
+        output = output.resolve(appname + ""."" + format.extension());
+    } else {
+        output = outputDir.resolve(""openapi."" + format.extension());
+    }
+    if (!Files.exists(output.getParent())) {
+        Files.createDirectories(output.getParent());
+    }
+    String content = format.toString(this, openAPI);
+    Files.write(output, Collections.singleton(content));
+    return output;
+}","/**
+   * Export an {@link OpenAPI} model to the given format.
+   *
+   * @param openAPI Model.
+   * @param format Format.
+   * @throws IOException
+   * @return Output file.
+   */","('export', {'INSTRUCTION': {'covered': 78, 'missed': 21}, 'BRANCH': {'covered': 4, 'missed': 2}, 'LINE': {'covered': 14, 'missed': 2}, 'COMPLEXITY': {'covered': 2, 'missed': 2}, 'METHOD': {'covered': 1, 'missed': 0}})",217.0,  Export an {@link OpenAPI} model to the given format.,13.0,"Given an OpenAPI model and a format as input, write to a file the OpenAPI model in the given format."," public Path export(@Nonnull OpenAPI openAPI, @Nonnull Format format) throws IOException{
+    Path output = outputDir.resolve(openAPI.getInfo().getTitle() + ""."" + format.extension());
+    Files.write(output, format.toString(this, openAPI).getBytes());
+    return output;
+  }",NOT PASS
+775,jackson-databind,com/fasterxml/jackson/databind/util/ClassUtil.java,/src/main/java/com/fasterxml/jackson/databind/util/ClassUtil.java,wrapperType,876-909,"/**
+     * Helper method for finding wrapper type for given primitive type (why isn't
+     * there one in JDK?).
+     * NOTE: throws {@link IllegalArgumentException} if given type is NOT primitive
+     * type (caller has to check).
+     */
+public static Class<?> wrapperType(Class<?> primitiveType){
+    if (primitiveType == Integer.TYPE) {
+        return Integer.class;
+    }
+    if (primitiveType == Long.TYPE) {
+        return Long.class;
+    }
+    if (primitiveType == Boolean.TYPE) {
+        return Boolean.class;
+    }
+    if (primitiveType == Double.TYPE) {
+        return Double.class;
+    }
+    if (primitiveType == Float.TYPE) {
+        return Float.class;
+    }
+    if (primitiveType == Byte.TYPE) {
+        return Byte.class;
+    }
+    if (primitiveType == Short.TYPE) {
+        return Short.class;
+    }
+    if (primitiveType == Character.TYPE) {
+        return Character.class;
+    }
+    throw new IllegalArgumentException(""Class "" + primitiveType.getName() + "" is not a primitive type"");
+}","public static Class<?> wrapperType(Class<?> primitiveType){
+    if (primitiveType == Integer.TYPE) {
+        return Integer.class;
+    }
+    if (primitiveType == Long.TYPE) {
+        return Long.class;
+    }
+    if (primitiveType == Boolean.TYPE) {
+        return Boolean.class;
+    }
+    if (primitiveType == Double.TYPE) {
+        return Double.class;
+    }
+    if (primitiveType == Float.TYPE) {
+        return Float.class;
+    }
+    if (primitiveType == Byte.TYPE) {
+        return Byte.class;
+    }
+    if (primitiveType == Short.TYPE) {
+        return Short.class;
+    }
+    if (primitiveType == Character.TYPE) {
+        return Character.class;
+    }
+    throw new IllegalArgumentException(""Class "" + primitiveType.getName() + "" is not a primitive type"");
+}","/**
+     * Helper method for finding wrapper type for given primitive type (why isn't
+     * there one in JDK?).
+     * NOTE: throws {@link IllegalArgumentException} if given type is NOT primitive
+     * type (caller has to check).
+     */","('wrapperType', {'INSTRUCTION': {'covered': 55, 'missed': 0}, 'BRANCH': {'covered': 16, 'missed': 0}, 'LINE': {'covered': 17, 'missed': 0}, 'COMPLEXITY': {'covered': 9, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",151.0,  Helper method for finding wrapper type for given primitive type (why isn't  there one in JDK?).,21.0,Return to which class the primitive type given as input belongs to.," public static Class<?> wrapperType(Class<?> primitiveType){
+        if (primitiveType == Integer.TYPE) {
+            return Integer.class;
+        }
+        if (primitiveType == Long.TYPE) {
+            return Long.class;
+        }
+        if (primitiveType == Boolean.TYPE) {
+            return Boolean.class;
+        }
+        if (primitiveType == Double.TYPE) {
+            return Double.class;
+        }
+        if (primitiveType == Float.TYPE) {
+            return Float.class;
+        }
+        if (primitiveType == Byte.TYPE) {
+            return Byte.class;
+        }
+        if (primitiveType == Short.TYPE) {
+            return Short.class;
+        }
+        if (primitiveType == Character.TYPE) {
+            return Character.class;
+        }
+        throw new IllegalArgumentException(""Class ""+primitiveType.getName()+"" is not a primitive type"");
+    }",PASS
+639,cdk,org/openscience/cdk/io/WriterFactory.java,/storage/io/src/main/java/org/openscience/cdk/io/WriterFactory.java,findChemFormats,73-93,"/**
+     * Finds IChemFormats that provide a container for serialization for the
+     * given features. The syntax of the integer is explained in the DataFeatures class.
+     *
+     * @param  features the data features for which a IChemFormat is searched
+     * @return          an array of IChemFormat's that can contain the given features
+     *
+     * @see    org.openscience.cdk.tools.DataFeatures
+     */
+public IChemFormat[] findChemFormats(int features){
+    if (formats == null)
+        loadFormats();
+    Iterator<IChemFormat> iter = formats.iterator();
+    List<IChemFormat> matches = new ArrayList<IChemFormat>();
+    while (iter.hasNext()) {
+        IChemFormat format = (IChemFormat) iter.next();
+        if ((format.getSupportedDataFeatures() & features) == features)
+            matches.add(format);
+    }
+    return (IChemFormat[]) matches.toArray(new IChemFormat[matches.size()]);
+}","public IChemFormat[] findChemFormats(int features){
+    if (formats == null)
+        loadFormats();
+    Iterator<IChemFormat> iter = formats.iterator();
+    List<IChemFormat> matches = new ArrayList<IChemFormat>();
+    while (iter.hasNext()) {
+        IChemFormat format = (IChemFormat) iter.next();
+        if ((format.getSupportedDataFeatures() & features) == features)
+            matches.add(format);
+    }
+    return (IChemFormat[]) matches.toArray(new IChemFormat[matches.size()]);
+}","/**
+     * Finds IChemFormats that provide a container for serialization for the
+     * given features. The syntax of the integer is explained in the DataFeatures class.
+     *
+     * @param  features the data features for which a IChemFormat is searched
+     * @return          an array of IChemFormat's that can contain the given features
+     *
+     * @see    org.openscience.cdk.tools.DataFeatures
+     */","('findChemFormats', {'INSTRUCTION': {'covered': 36, 'missed': 0}, 'BRANCH': {'covered': 5, 'missed': 1}, 'LINE': {'covered': 8, 'missed': 0}, 'COMPLEXITY': {'covered': 3, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",111.0,  Finds IChemFormats that provide a container for serialization for the  given features.,13.0,Return an array of matching ChemFormats.," public IChemFormat[] findChemFormats(int features){
+        if (formats == null) {
+            formats = new ArrayList<IChemFormat>();
+            try {
+                Class<?> clazz = Class.forName(IO_FORMATS_LIST);
+                Method method = clazz.getMethod(""getFormats"");
+                formats = (List<IChemFormat>) method.invoke(null);
+            } catch (ClassNotFoundException e) {
+                logger.error(""Could not find class: "" + IO_FORMATS_LIST);
+            } catch (SecurityException e) {
+                logger.error(""Could not access class: "" + IO_FORMATS_LIST);
+            } catch (NoSuchMethodException e) {
+                logger.error(""Could not find method: "" + IO_FORMATS_LIST);
+            } catch (IllegalArgumentException e) {
+                logger.error(""Could not invoke method: "" + IO_FORMATS_LIST);
+            } catch (IllegalAccessException e) {
+                logger.error(""Could not invoke method: "" + IO_FORMATS_LIST);
+            } catch (InvocationTargetException e) {
+                logger.error(""Could not invoke method: "" + IO_FORMATS_LIST);
+            }
+        }
+        List<IChemFormat> matchingFormats = new ArrayList<IChemFormat>();
+        for (IChemFormat format : formats) {
+            if ((format.getSupportedFeatures() & features) == features) {
+                matchingFormats.add(format);
+            }
+        }
+        return matchingFormats.toArray(new IChemFormat[matchingFormats.size()]);            
+ }",NOT PASS
+597,cdk,org/openscience/cdk/smsd/algorithm/rgraph/CDKMCS.java,/legacy/src/main/java/org/openscience/cdk/smsd/algorithm/rgraph/CDKMCS.java,makeAtomsMapsOfBondsMaps,686-707,"/**
+     *  This makes maps of matching atoms out of atom maps of matching bonds as produced by the get(Subgraph|Ismorphism)Maps methods.
+     *
+     * @param  list   The list produced by the getMap method.
+     * @param  sourceGraph  The first atom container. Must not be atom IQueryAtomContainer.
+     * @param  targetGraph  The second one (first and second as in getMap). May be an QueryAtomContaienr.
+     * @return     A Vector of Vectors of CDKRMap objects of matching Atoms.
+     */
+public static List<List<CDKRMap>> makeAtomsMapsOfBondsMaps(List<List<CDKRMap>> list, IAtomContainer sourceGraph, IAtomContainer targetGraph){
+    if (list == null) {
+        return list;
+    }
+    if (targetGraph.getAtomCount() == 1) {
+        return list;
+    }
+    List<List<CDKRMap>> result = new ArrayList<List<CDKRMap>>();
+    for (List<CDKRMap> l2 : list) {
+        result.add(makeAtomsMapOfBondsMap(l2, sourceGraph, targetGraph));
+    }
+    return result;
+}","public static List<List<CDKRMap>> makeAtomsMapsOfBondsMaps(List<List<CDKRMap>> list, IAtomContainer sourceGraph, IAtomContainer targetGraph){
+    if (list == null) {
+        return list;
+    }
+    if (targetGraph.getAtomCount() == 1) {
+        return list;
+    }
+    List<List<CDKRMap>> result = new ArrayList<List<CDKRMap>>();
+    for (List<CDKRMap> l2 : list) {
+        result.add(makeAtomsMapOfBondsMap(l2, sourceGraph, targetGraph));
+    }
+    return result;
+}","/**
+     *  This makes maps of matching atoms out of atom maps of matching bonds as produced by the get(Subgraph|Ismorphism)Maps methods.
+     *
+     * @param  list   The list produced by the getMap method.
+     * @param  sourceGraph  The first atom container. Must not be atom IQueryAtomContainer.
+     * @param  targetGraph  The second one (first and second as in getMap). May be an QueryAtomContaienr.
+     * @return     A Vector of Vectors of CDKRMap objects of matching Atoms.
+     */","('makeAtomsMapsOfBondsMaps', {'INSTRUCTION': {'covered': 32, 'missed': 2}, 'BRANCH': {'covered': 5, 'missed': 1}, 'LINE': {'covered': 8, 'missed': 1}, 'COMPLEXITY': {'covered': 3, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",103.0,  This makes maps of matching atoms out of atom maps of matching bonds as produced by the get(Subgraph|Ismorphism)Maps methods.,24.0,"Given a list of list of CDKRMap as input, add a new map of makeAtomsMapOfBondMapin result if the list given as input is not null and the number of atoms within the target graph is different from 1."," public static List<List<CDKRMap>> makeAtomsMapsOfBondsMaps(List<List<CDKRMap>> list, IAtomContainer sourceGraph, IAtomContainer targetGraph){
+        if (list != null && targetGraph.getAtomCount() != 1) {
+            List<List<CDKRMap>> result = new ArrayList<List<CDKRMap>>();
+            for (List<CDKRMap> list1 : list) {
+                List<CDKRMap> newList = new ArrayList<CDKRMap>();
+                for (CDKRMap map : list1) {
+                    newList.add(new CDKRMap(map.getAtomMap(sourceGraph), map.getBondMap(sourceGraph)));
+                }
+                result.add(newList);
+            }
+            return result;
+        } else {
+            return list;
+        }
+    }",NOT PASS
+786,dcache,org/dcache/services/info/base/StateComposite.java,/modules/dcache-info/src/main/java/org/dcache/services/info/base/StateComposite.java,addComponent,441-482,"/**
+     * Add a new component to our list of children.
+     * <p>
+     *
+     * @param childName the name under which this item should be recorded
+     * @param newChild  the StateComponent to be stored.
+     */
+private void addComponent(String childName, StateComponent newChild){
+    StateComponent existingChild = _children.get(childName);
+    if (newChild instanceof StateComposite) {
+        StateComposite newComposite = (StateComposite) newChild;
+        if (existingChild instanceof StateComposite) {
+            StateComposite existingComposite = (StateComposite) existingChild;
+            for (Map.Entry<String, StateComponent> entry : existingComposite._children.entrySet()) {
+                if (!newComposite._children.containsKey(entry.getKey())) {
+                    newComposite._children.put(entry.getKey(), entry.getValue());
+                }
+            }
+            newComposite.updateEarliestChildExpiryDate(existingComposite.getEarliestChildExpiryDate());
+            newComposite.updateWhenIShouldExpireDate(existingComposite.getExpiryDate());
+        }
+    }
+    _children.put(childName, newChild);
+    LOGGER.trace(""Child {} now {}"", childName, newChild);
+}","private void addComponent(String childName, StateComponent newChild){
+    StateComponent existingChild = _children.get(childName);
+    if (newChild instanceof StateComposite) {
+        StateComposite newComposite = (StateComposite) newChild;
+        if (existingChild instanceof StateComposite) {
+            StateComposite existingComposite = (StateComposite) existingChild;
+            for (Map.Entry<String, StateComponent> entry : existingComposite._children.entrySet()) {
+                if (!newComposite._children.containsKey(entry.getKey())) {
+                    newComposite._children.put(entry.getKey(), entry.getValue());
+                }
+            }
+            newComposite.updateEarliestChildExpiryDate(existingComposite.getEarliestChildExpiryDate());
+            newComposite.updateWhenIShouldExpireDate(existingComposite.getExpiryDate());
+        }
+    }
+    _children.put(childName, newChild);
+    LOGGER.trace(""Child {} now {}"", childName, newChild);
+}","/**
+     * Add a new component to our list of children.
+     * <p>
+     *
+     * @param childName the name under which this item should be recorded
+     * @param newChild  the StateComponent to be stored.
+     */","('addComponent', {'INSTRUCTION': {'covered': 67, 'missed': 0}, 'BRANCH': {'covered': 7, 'missed': 1}, 'LINE': {'covered': 16, 'missed': 0}, 'COMPLEXITY': {'covered': 4, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",155.0,  Add a new component to our list of children.,10.0,Create a new StateComponent child with the child's name given as input.," private void addComponent(String childName, StateComponent newChild){
+        _children.put(childName, newChild);         
+ }",NOT PASS
+195,shardingsphere-elasticjob,org/apache/shardingsphere/elasticjob/cloud/scheduler/statistics/StatisticManager.java,/elasticjob-cloud/elasticjob-cloud-scheduler/src/main/java/org/apache/shardingsphere/elasticjob/cloud/scheduler/statistics/StatisticManager.java,findJobRunningStatisticsWeekly,237-247,"/**
+     * Get the collection of job statistics in the most recent week.
+     * 
+     * @return collection of running task statistics data objects
+     */
+public List<JobRunningStatistics> findJobRunningStatisticsWeekly(){
+    if (!isRdbConfigured()) {
+        return Collections.emptyList();
+    }
+    return rdbRepository.findJobRunningStatistics(StatisticTimeUtils.getStatisticTime(StatisticInterval.DAY, -7));
+}","public List<JobRunningStatistics> findJobRunningStatisticsWeekly(){
+    if (!isRdbConfigured()) {
+        return Collections.emptyList();
+    }
+    return rdbRepository.findJobRunningStatistics(StatisticTimeUtils.getStatisticTime(StatisticInterval.DAY, -7));
+}","/**
+     * Get the collection of job statistics in the most recent week.
+     * 
+     * @return collection of running task statistics data objects
+     */","('findJobRunningStatisticsWeekly', {'INSTRUCTION': {'covered': 12, 'missed': 0}, 'BRANCH': {'covered': 2, 'missed': 0}, 'LINE': {'covered': 3, 'missed': 0}, 'COMPLEXITY': {'covered': 2, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",44.0,  Get the collection of job statistics in the most recent week.,12.0,Return the weekly statistics of the running job.," public List<JobRunningStatistics> findJobRunningStatisticsWeekly(){
+        if (!isRdbConfigured()) {
+            return Collections.emptyList();
+        }
+        return rdbRepository.findJobRunningStatistics(StatisticTimeUtils.getStatisticTime(StatisticInterval.DAY, -7));
+    }",PASS
+32,weblogic-kubernetes-operator,oracle/kubernetes/operator/builders/WatchBuilder.java,/operator/src/main/java/oracle/kubernetes/operator/builders/WatchBuilder.java,createConfigMapWatch,118-130,"/**
+   * Creates a web hook object to track config map calls.
+   *
+   * @param namespace the namespace
+   * @return the active web hook
+   * @throws ApiException if there is an error on the call that sets up the web hook.
+   */
+public Watchable<V1ConfigMap> createConfigMapWatch(String namespace) throws ApiException{
+    return FACTORY.createWatch(callParams, V1ConfigMap.class, new ListNamespacedConfigMapCall(namespace));
+}","public Watchable<V1ConfigMap> createConfigMapWatch(String namespace) throws ApiException{
+    return FACTORY.createWatch(callParams, V1ConfigMap.class, new ListNamespacedConfigMapCall(namespace));
+}","/**
+   * Creates a web hook object to track config map calls.
+   *
+   * @param namespace the namespace
+   * @return the active web hook
+   * @throws ApiException if there is an error on the call that sets up the web hook.
+   */","('createConfigMapWatch', {'INSTRUCTION': {'covered': 10, 'missed': 0}, 'LINE': {'covered': 1, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",32.0,  Creates a web hook object to track config map calls.,11.0,Create a new MapWatch object.," public Watchable<V1ConfigMap> createConfigMapWatch(String namespace) throws ApiException{
+    return FACTORY.createWatch(
+        callParams, V1ConfigMap.class, new ListConfigMapCall(namespace));
+  }",NOT PASS
+377,acs-aem-commons,com/adobe/acs/commons/util/BufferedServletOutput.java,/bundle/src/main/java/com/adobe/acs/commons/util/BufferedServletOutput.java,flushBuffer,204-220,"/**
+     * Will not commit the response, but only make sure that the wrapped response's {@code flushBuffer()} is executed, once this {@link #close()} is called.
+     * This only affects output which is buffered, i.e. for unbuffered output the flush is not deferred.
+     * @throws IOException 
+     */
+public void flushBuffer() throws IOException{
+    if (isBuffered()) {
+        log.debug(""Prevent committing the response, it will be committed deferred, i.e. once this buffered response is closed"");
+        if (log.isDebugEnabled()) {
+            Throwable t = new Throwable("""");
+            log.debug(""Stacktrace which triggered ServletResponse.flushBuffer()"", t);
+        }
+        flushWrappedBuffer = true;
+    } else {
+        wrappedResponse.flushBuffer();
+    }
+}","public void flushBuffer() throws IOException{
+    if (isBuffered()) {
+        log.debug(""Prevent committing the response, it will be committed deferred, i.e. once this buffered response is closed"");
+        if (log.isDebugEnabled()) {
+            Throwable t = new Throwable("""");
+            log.debug(""Stacktrace which triggered ServletResponse.flushBuffer()"", t);
+        }
+        flushWrappedBuffer = true;
+    } else {
+        wrappedResponse.flushBuffer();
+    }
+}","/**
+     * Will not commit the response, but only make sure that the wrapped response's {@code flushBuffer()} is executed, once this {@link #close()} is called.
+     * This only affects output which is buffered, i.e. for unbuffered output the flush is not deferred.
+     * @throws IOException 
+     */","('flushBuffer', {'INSTRUCTION': {'covered': 23, 'missed': 3}, 'BRANCH': {'covered': 2, 'missed': 2}, 'LINE': {'covered': 7, 'missed': 1}, 'COMPLEXITY': {'covered': 1, 'missed': 2}, 'METHOD': {'covered': 1, 'missed': 0}})",65.0,"  Will not commit the response, but only make sure that the wrapped response's {@code flushBuffer()} is executed, once this {@link #close()} is called.",38.0,Flush the buffer of the wrappedResponse.," public void flushBuffer() throws IOException{
+        wrappedResponse.flushBuffer();
+    }",PASS
+978,egeria,org/odpi/openmetadata/adapters/connectors/datastore/csvfile/CSVFileStoreConnector.java,/open-metadata-implementation/adapters/open-connectors/data-store-connectors/file-connectors/csv-file-connector/src/main/java/org/odpi/openmetadata/adapters/connectors/datastore/csvfile/CSVFileStoreConnector.java,parseRecord,274-364,"/**
+     * Step through the record, character by character, extracting each column and enduring that escaped double quotes
+     * and other tricks found in CSV files are handled.
+     *
+     * @param fileRecord a single record from the CSV file store
+     * @return an array of column values extracted from the record
+     */
+private List<String> parseRecord(String fileRecord){
+    if ((fileRecord == null) || (fileRecord.isEmpty())) {
+        return null;
+    }
+    List<String> result = new ArrayList<>();
+    StringBuffer currentValue = new StringBuffer();
+    boolean inQuotes = false;
+    boolean startCollectingCharacters = false;
+    boolean doubleQuotesInColumn = false;
+    char[] characters = fileRecord.toCharArray();
+    for (char character : characters) {
+        if (inQuotes) {
+            startCollectingCharacters = true;
+            if (character == quoteChar) {
+                inQuotes = false;
+                doubleQuotesInColumn = false;
+            } else {
+                if (character == '\""') {
+                    if (!doubleQuotesInColumn) {
+                        currentValue.append(character);
+                        doubleQuotesInColumn = true;
+                    }
+                } else {
+                    currentValue.append(character);
+                }
+            }
+        } else {
+            if (character == quoteChar) {
+                inQuotes = true;
+                if (characters[0] != '""' && quoteChar == '\""') {
+                    currentValue.append('""');
+                }
+                if (startCollectingCharacters) {
+                    currentValue.append('""');
+                }
+            } else if (character == delimiterChar) {
+                result.add(currentValue.toString());
+                currentValue = new StringBuffer();
+                startCollectingCharacters = false;
+            } else if (character == '\n') {
+                break;
+            } else if (character != '\r') {
+                currentValue.append(character);
+            }
+        }
+    }
+    result.add(currentValue.toString());
+    return result;
+}","private List<String> parseRecord(String fileRecord){
+    if ((fileRecord == null) || (fileRecord.isEmpty())) {
+        return null;
+    }
+    List<String> result = new ArrayList<>();
+    StringBuffer currentValue = new StringBuffer();
+    boolean inQuotes = false;
+    boolean startCollectingCharacters = false;
+    boolean doubleQuotesInColumn = false;
+    char[] characters = fileRecord.toCharArray();
+    for (char character : characters) {
+        if (inQuotes) {
+            startCollectingCharacters = true;
+            if (character == quoteChar) {
+                inQuotes = false;
+                doubleQuotesInColumn = false;
+            } else {
+                if (character == '\""') {
+                    if (!doubleQuotesInColumn) {
+                        currentValue.append(character);
+                        doubleQuotesInColumn = true;
+                    }
+                } else {
+                    currentValue.append(character);
+                }
+            }
+        } else {
+            if (character == quoteChar) {
+                inQuotes = true;
+                if (characters[0] != '""' && quoteChar == '\""') {
+                    currentValue.append('""');
+                }
+                if (startCollectingCharacters) {
+                    currentValue.append('""');
+                }
+            } else if (character == delimiterChar) {
+                result.add(currentValue.toString());
+                currentValue = new StringBuffer();
+                startCollectingCharacters = false;
+            } else if (character == '\n') {
+                break;
+            } else if (character != '\r') {
+                currentValue.append(character);
+            }
+        }
+    }
+    result.add(currentValue.toString());
+    return result;
+}","/**
+     * Step through the record, character by character, extracting each column and enduring that escaped double quotes
+     * and other tricks found in CSV files are handled.
+     *
+     * @param fileRecord a single record from the CSV file store
+     * @return an array of column values extracted from the record
+     */","('parseRecord', {'INSTRUCTION': {'covered': 118, 'missed': 12}, 'BRANCH': {'covered': 20, 'missed': 8}, 'LINE': {'covered': 30, 'missed': 5}, 'COMPLEXITY': {'covered': 8, 'missed': 7}, 'METHOD': {'covered': 1, 'missed': 0}})",276.0,"  Step through the record, character by character, extracting each column and enduring that escaped double quotes  and other tricks found in CSV files are handled.",28.0,"Given a string of file record as input, parse the record and add the results to a new list. Finally, return the list with the parsed result."," private List<String> parseRecord(String fileRecord){
+        List<String> parsedRecord = new ArrayList<String>();
+        StringTokenizer tokenizer = new StringTokenizer(fileRecord, String.valueOf(delimiterChar));
+        while (tokenizer.hasMoreTokens()){
+            parsedRecord.add(tokenizer.nextToken());
+        }
+        return parsedRecord;
+    }",NOT PASS
+156,openapi-generator,org/openapitools/codegen/DefaultCodegen.java,/modules/openapi-generator/src/main/java/org/openapitools/codegen/DefaultCodegen.java,handleMethodResponse,3816-3829,"/**
+     * Set op's returnBaseType, returnType, examples etc.
+     *
+     * @param operation      endpoint Operation
+     * @param schemas        a map of the schemas in the openapi spec
+     * @param op             endpoint CodegenOperation
+     * @param methodResponse the default ApiResponse for the endpoint
+     */
+protected void handleMethodResponse(Operation operation, Map<String, Schema> schemas, CodegenOperation op, ApiResponse methodResponse){
+    handleMethodResponse(operation, schemas, op, methodResponse, Collections.emptyMap());
+}","protected void handleMethodResponse(Operation operation, Map<String, Schema> schemas, CodegenOperation op, ApiResponse methodResponse){
+    handleMethodResponse(operation, schemas, op, methodResponse, Collections.emptyMap());
+}","/**
+     * Set op's returnBaseType, returnType, examples etc.
+     *
+     * @param operation      endpoint Operation
+     * @param schemas        a map of the schemas in the openapi spec
+     * @param op             endpoint CodegenOperation
+     * @param methodResponse the default ApiResponse for the endpoint
+     */","('handleMethodResponse', {'INSTRUCTION': {'covered': 211, 'missed': 4}, 'BRANCH': {'covered': 32, 'missed': 6}, 'LINE': {'covered': 45, 'missed': 1}, 'COMPLEXITY': {'covered': 14, 'missed': 6}, 'METHOD': {'covered': 1, 'missed': 0}})",40.0,"  Set op's returnBaseType, returnType, examples etc.",10.0,"Using this recursive method, handle the method response.
+",Empty Method,Empty Method
+127,dcache,org/dcache/services/info/base/StateComposite.java,/modules/dcache-info/src/main/java/org/dcache/services/info/base/StateComposite.java,updateEarliestChildExpiryDate,109-124,"/**
+     * Possibly update our belief of the earliest time that a Mortal child StateComponent will
+     * expire.  It is safe to call this method with all child Dates: it will update the
+     * _earliestChildExpiry Date correctly.
+     *
+     * @param newDate the expiry Date of a Mortal child StateComponent
+     */
+private void updateEarliestChildExpiryDate(Date newDate){
+    if (newDate == null) {
+        return;
+    }
+    if (_earliestChildExpiry == null || newDate.before(_earliestChildExpiry)) {
+        _earliestChildExpiry = newDate;
+    }
+}","private void updateEarliestChildExpiryDate(Date newDate){
+    if (newDate == null) {
+        return;
+    }
+    if (_earliestChildExpiry == null || newDate.before(_earliestChildExpiry)) {
+        _earliestChildExpiry = newDate;
+    }
+}","/**
+     * Possibly update our belief of the earliest time that a Mortal child StateComponent will
+     * expire.  It is safe to call this method with all child Dates: it will update the
+     * _earliestChildExpiry Date correctly.
+     *
+     * @param newDate the expiry Date of a Mortal child StateComponent
+     */","('updateEarliestChildExpiryDate', {'INSTRUCTION': {'covered': 14, 'missed': 1}, 'BRANCH': {'covered': 5, 'missed': 1}, 'LINE': {'covered': 4, 'missed': 1}, 'COMPLEXITY': {'covered': 3, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",38.0,  Possibly update our belief of the earliest time that a Mortal child StateComponent will  expire.,16.0,Update the earliest child expiry date to the one given as input.," private void updateEarliestChildExpiryDate(Date newDate){
+        if (_earliestChildExpiry == null || newDate.before(_earliestChildExpiry)) {
+            _earliestChildExpiry = newDate;
+        }           
+ }",PASS
+1052,logstash-logback-encoder,net/logstash/logback/appender/WaitStrategyFactory.java,/src/main/java/net/logstash/logback/appender/WaitStrategyFactory.java,createWaitStrategyFromString,41-136,"/**
+     * Creates a {@link WaitStrategy} from a string.
+     * <p>
+     * The following strategies are supported:
+     * <ul>
+     * <li><code>blocking</code> - {@link BlockingWaitStrategy}</li>
+     * <li><code>busySpin</code> - {@link BusySpinWaitStrategy}</li>
+     * <li><code>liteBlocking</code> - {@link LiteBlockingWaitStrategy}</li>
+     * <li><code>sleeping{retries,sleepTimeNs}</code> - {@link SleepingWaitStrategy}
+     *         - <code>retries</code> an integer number of times to spin before sleeping. (default = 200)
+     *           <code>sleepTimeNs</code> nanosecond time to sleep each iteration after spinning (default = 100)
+     * </li>
+     * <li><code>yielding</code> - {@link YieldingWaitStrategy}</li>
+     * <li><code>phasedBackoff{spinTimeout,yieldTimeout,timeUnit,fallackStrategy}</code> - {@link PhasedBackoffWaitStrategy}
+     *         - <code>spinTimeout</code> and <code>yieldTimeout</code> are long values.
+     *           <code>timeUnit</code> is a string name of one of the {@link TimeUnit} values.
+     *           <code>fallbackStrategy</code> is a wait strategy string (e.g. <code>blocking</code>).
+     * </li>
+     * <li><code>timeoutBlocking{timeout,timeUnit}</code> - {@link TimeoutBlockingWaitStrategy}
+     *         - <code>timeout</code> is a long value.
+     *           <code>timeUnit</code> is a string name of one of the {@link TimeUnit} values.
+     * </li>
+     * <li><code>liteTimeoutBlocking{timeout,timeUnit}</code> - {@link LiteTimeoutBlockingWaitStrategy}
+     *         - <code>timeout</code> is a long value.
+     *           <code>timeUnit</code> is a string name of one of the {@link TimeUnit} values.
+     * </li>
+     * </ul>
+     *
+     * @param waitStrategyType the name of the desired wait strategy
+     * @return a {@link WaitStrategy} instance or {@code null} if the supplied name is {@code null} or empty
+     * @throws IllegalArgumentException if an unknown wait strategy type is given, or the parameters are unable to be parsed.
+     */
+public static WaitStrategy createWaitStrategyFromString(String waitStrategyType){
+    if (waitStrategyType == null) {
+        return null;
+    }
+    waitStrategyType = waitStrategyType.trim().toLowerCase();
+    if (waitStrategyType.isEmpty()) {
+        return null;
+    }
+    if (waitStrategyType.equals(""blocking"")) {
+        return new BlockingWaitStrategy();
+    }
+    if (waitStrategyType.equals(""busyspin"")) {
+        return new BusySpinWaitStrategy();
+    }
+    if (waitStrategyType.equals(""liteblocking"")) {
+        return new LiteBlockingWaitStrategy();
+    }
+    if (waitStrategyType.startsWith(""sleeping"")) {
+        if (waitStrategyType.equals(""sleeping"")) {
+            return new SleepingWaitStrategy();
+        } else {
+            List<Object> params = parseParams(waitStrategyType, Integer.class, Long.class);
+            return new SleepingWaitStrategy((Integer) params.get(0), (Long) params.get(1));
+        }
+    }
+    if (waitStrategyType.equals(""yielding"")) {
+        return new YieldingWaitStrategy();
+    }
+    if (waitStrategyType.startsWith(""phasedbackoff"")) {
+        List<Object> params = parseParams(waitStrategyType, Long.class, Long.class, TimeUnit.class, WaitStrategy.class);
+        return new PhasedBackoffWaitStrategy((Long) params.get(0), (Long) params.get(1), (TimeUnit) params.get(2), (WaitStrategy) params.get(3));
+    }
+    if (waitStrategyType.startsWith(""timeoutblocking"")) {
+        List<Object> params = parseParams(waitStrategyType, Long.class, TimeUnit.class);
+        return new TimeoutBlockingWaitStrategy((Long) params.get(0), (TimeUnit) params.get(1));
+    }
+    if (waitStrategyType.startsWith(""litetimeoutblocking"")) {
+        List<Object> params = parseParams(waitStrategyType, Long.class, TimeUnit.class);
+        return new LiteTimeoutBlockingWaitStrategy((Long) params.get(0), (TimeUnit) params.get(1));
+    }
+    throw new IllegalArgumentException(""Unknown wait strategy type: "" + waitStrategyType);
+}","public static WaitStrategy createWaitStrategyFromString(String waitStrategyType){
+    if (waitStrategyType == null) {
+        return null;
+    }
+    waitStrategyType = waitStrategyType.trim().toLowerCase();
+    if (waitStrategyType.isEmpty()) {
+        return null;
+    }
+    if (waitStrategyType.equals(""blocking"")) {
+        return new BlockingWaitStrategy();
+    }
+    if (waitStrategyType.equals(""busyspin"")) {
+        return new BusySpinWaitStrategy();
+    }
+    if (waitStrategyType.equals(""liteblocking"")) {
+        return new LiteBlockingWaitStrategy();
+    }
+    if (waitStrategyType.startsWith(""sleeping"")) {
+        if (waitStrategyType.equals(""sleeping"")) {
+            return new SleepingWaitStrategy();
+        } else {
+            List<Object> params = parseParams(waitStrategyType, Integer.class, Long.class);
+            return new SleepingWaitStrategy((Integer) params.get(0), (Long) params.get(1));
+        }
+    }
+    if (waitStrategyType.equals(""yielding"")) {
+        return new YieldingWaitStrategy();
+    }
+    if (waitStrategyType.startsWith(""phasedbackoff"")) {
+        List<Object> params = parseParams(waitStrategyType, Long.class, Long.class, TimeUnit.class, WaitStrategy.class);
+        return new PhasedBackoffWaitStrategy((Long) params.get(0), (Long) params.get(1), (TimeUnit) params.get(2), (WaitStrategy) params.get(3));
+    }
+    if (waitStrategyType.startsWith(""timeoutblocking"")) {
+        List<Object> params = parseParams(waitStrategyType, Long.class, TimeUnit.class);
+        return new TimeoutBlockingWaitStrategy((Long) params.get(0), (TimeUnit) params.get(1));
+    }
+    if (waitStrategyType.startsWith(""litetimeoutblocking"")) {
+        List<Object> params = parseParams(waitStrategyType, Long.class, TimeUnit.class);
+        return new LiteTimeoutBlockingWaitStrategy((Long) params.get(0), (TimeUnit) params.get(1));
+    }
+    throw new IllegalArgumentException(""Unknown wait strategy type: "" + waitStrategyType);
+}","/**
+     * Creates a {@link WaitStrategy} from a string.
+     * <p>
+     * The following strategies are supported:
+     * <ul>
+     * <li><code>blocking</code> - {@link BlockingWaitStrategy}</li>
+     * <li><code>busySpin</code> - {@link BusySpinWaitStrategy}</li>
+     * <li><code>liteBlocking</code> - {@link LiteBlockingWaitStrategy}</li>
+     * <li><code>sleeping{retries,sleepTimeNs}</code> - {@link SleepingWaitStrategy}
+     *         - <code>retries</code> an integer number of times to spin before sleeping. (default = 200)
+     *           <code>sleepTimeNs</code> nanosecond time to sleep each iteration after spinning (default = 100)
+     * </li>
+     * <li><code>yielding</code> - {@link YieldingWaitStrategy}</li>
+     * <li><code>phasedBackoff{spinTimeout,yieldTimeout,timeUnit,fallackStrategy}</code> - {@link PhasedBackoffWaitStrategy}
+     *         - <code>spinTimeout</code> and <code>yieldTimeout</code> are long values.
+     *           <code>timeUnit</code> is a string name of one of the {@link TimeUnit} values.
+     *           <code>fallbackStrategy</code> is a wait strategy string (e.g. <code>blocking</code>).
+     * </li>
+     * <li><code>timeoutBlocking{timeout,timeUnit}</code> - {@link TimeoutBlockingWaitStrategy}
+     *         - <code>timeout</code> is a long value.
+     *           <code>timeUnit</code> is a string name of one of the {@link TimeUnit} values.
+     * </li>
+     * <li><code>liteTimeoutBlocking{timeout,timeUnit}</code> - {@link LiteTimeoutBlockingWaitStrategy}
+     *         - <code>timeout</code> is a long value.
+     *           <code>timeUnit</code> is a string name of one of the {@link TimeUnit} values.
+     * </li>
+     * </ul>
+     *
+     * @param waitStrategyType the name of the desired wait strategy
+     * @return a {@link WaitStrategy} instance or {@code null} if the supplied name is {@code null} or empty
+     * @throws IllegalArgumentException if an unknown wait strategy type is given, or the parameters are unable to be parsed.
+     */","('createWaitStrategyFromString', {'INSTRUCTION': {'covered': 191, 'missed': 12}, 'BRANCH': {'covered': 21, 'missed': 1}, 'LINE': {'covered': 37, 'missed': 1}, 'COMPLEXITY': {'covered': 11, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",391.0,  Creates a {@link WaitStrategy} from a string.,11.0,Return a new wait strategy parsing the waitStrategyTime parameter given as input.," public static WaitStrategy createWaitStrategyFromString(String waitStrategyType){
+        if (waitStrategyType == null) {
+            return new BusySpinWaitStrategy();
+        }
+        if (waitStrategyType.equalsIgnoreCase(""busy"")) {
+            return new BusySpinWaitStrategy();
+        }
+        if (waitStrategyType.equalsIgnoreCase(""blocking"")) {
+            return new BlockingWaitStrategy();
+        }
+        if (waitStrategyType.equalsIgnoreCase(""liteblocking"")) {
+            return new LiteBlockingWaitStrategy();
+        }
+        if (waitStrategyType.equalsIgnoreCase(""timeout"")) {
+            return new TimeoutBlockingWaitStrategy();
+        }
+        if (waitStrategyType.equalsIgnoreCase(""litemode"")) {
+            return new LiteTimeoutBlockingWaitStrategy();
+        }
+        if (waitStrategyType.equalsIgnoreCase(""sleeping"")) {
+            return new SleepingWaitStrategy();
+        }
+        if (waitStrategyType.equalsIgnoreCase(""yielding"")) {
+            return new YieldingWaitStrategy();
+        }
+        if (waitStrategyType.equalsIgnoreCase(""phased"")) {
+            return new PhasedBackoffWaitStrategy();
+        }
+        if (waitStrategyType.startsWith(""custom"")) {
+            return createCustomWaitStrategy(waitStrategyType);
+        }
+        throw new IllegalArgumentException(""Unknown wait strategy type: "" + waitStrategyType);          
+ }",NOT PASS
+833,dcache,org/dcache/resilience/data/PoolInfoMap.java,/modules/dcache-resilience/src/main/java/org/dcache/resilience/data/PoolInfoMap.java,resolveStorageUnitIndex,1098-1144,"/**
+     * <p>This method is an alternate search for storage unit.
+     * It first attempts to match units by interpreting the class names as a regex. If that fails,
+     * it tries first the class key, then universal key.</p>
+     *
+     * @param classKey the storage class of the unit
+     * @param unitKey  the full name of the storage unit
+     */
+private Integer resolveStorageUnitIndex(String classKey, String unitKey) throws NoSuchElementException{
+    Integer universalCoverage = null;
+    Integer classCoverage = null;
+    Integer specific = null;
+    read.lock();
+    try {
+        for (String unit : sunits) {
+            if (unit.equals(""*@*"")) {
+                universalCoverage = sunits.indexOf(unit);
+            } else if (unit.equals(""*@"" + classKey)) {
+                classCoverage = sunits.indexOf(unit);
+            } else if (useRegex && Pattern.matches(unit, unitKey)) {
+                specific = sunits.indexOf(unit);
+                break;
+            }
+        }
+    } finally {
+        read.unlock();
+    }
+    if (specific != null) {
+        return specific;
+    }
+    if (classCoverage != null) {
+        return classCoverage;
+    }
+    if (universalCoverage != null) {
+        return universalCoverage;
+    }
+    throw new NoSuchElementException(String.valueOf(unitKey));
+}","private Integer resolveStorageUnitIndex(String classKey, String unitKey) throws NoSuchElementException{
+    Integer universalCoverage = null;
+    Integer classCoverage = null;
+    Integer specific = null;
+    read.lock();
+    try {
+        for (String unit : sunits) {
+            if (unit.equals(""*@*"")) {
+                universalCoverage = sunits.indexOf(unit);
+            } else if (unit.equals(""*@"" + classKey)) {
+                classCoverage = sunits.indexOf(unit);
+            } else if (useRegex && Pattern.matches(unit, unitKey)) {
+                specific = sunits.indexOf(unit);
+                break;
+            }
+        }
+    } finally {
+        read.unlock();
+    }
+    if (specific != null) {
+        return specific;
+    }
+    if (classCoverage != null) {
+        return classCoverage;
+    }
+    if (universalCoverage != null) {
+        return universalCoverage;
+    }
+    throw new NoSuchElementException(String.valueOf(unitKey));
+}","/**
+     * <p>This method is an alternate search for storage unit.
+     * It first attempts to match units by interpreting the class names as a regex. If that fails,
+     * it tries first the class key, then universal key.</p>
+     *
+     * @param classKey the storage class of the unit
+     * @param unitKey  the full name of the storage unit
+     */","('resolveStorageUnitIndex', {'INSTRUCTION': {'covered': 64, 'missed': 15}, 'BRANCH': {'covered': 13, 'missed': 3}, 'LINE': {'covered': 18, 'missed': 3}, 'COMPLEXITY': {'covered': 6, 'missed': 3}, 'METHOD': {'covered': 1, 'missed': 0}})",171.0,  <p>This method is an alternate search for storage unit.,13.0,"Given two String as input representing the classKey and the unitKey, first, try to interpret the class names as regex attempting to match units.  If it fails, try the classKey, then the unitKey."," private Integer resolveStorageUnitIndex(String classKey, String unitKey) throws NoSuchElementException{
+        Integer index = null;
+        try {
+            index = sunits.indexOf(unitKey);
+        } catch (NoSuchElementException e) {
+            index = sunits.indexOf(classKey);
+        }
+        if (index == null) {
+            throw new NoSuchElementException(""No storage unit found for classKey: "" + classKey + "" and unitKey: "" + unitKey);
+        }
+        return index;
+    }",NOT PASS
+16,cdk,org/openscience/cdk/renderer/generators/standard/VecmathUtil.java,/display/renderbasic/src/main/java/org/openscience/cdk/renderer/generators/standard/VecmathUtil.java,adjacentLength,210-222,"/**
+     * Given vectors for the hypotenuse and adjacent side of a right angled
+     * triangle and the length of the opposite side, determine how long the
+     * adjacent side size.
+     *
+     * @param hypotenuse vector for the hypotenuse
+     * @param adjacent vector for the adjacent side
+     * @param oppositeLength length of the opposite side of a triangle
+     * @return length of the adjacent side
+     */
+ static double adjacentLength(Vector2d hypotenuse, Vector2d adjacent, double oppositeLength){
+    return Math.tan(hypotenuse.angle(adjacent)) * oppositeLength;
+}","static double adjacentLength(Vector2d hypotenuse, Vector2d adjacent, double oppositeLength){
+    return Math.tan(hypotenuse.angle(adjacent)) * oppositeLength;
+}","/**
+     * Given vectors for the hypotenuse and adjacent side of a right angled
+     * triangle and the length of the opposite side, determine how long the
+     * adjacent side size.
+     *
+     * @param hypotenuse vector for the hypotenuse
+     * @param adjacent vector for the adjacent side
+     * @param oppositeLength length of the opposite side of a triangle
+     * @return length of the adjacent side
+     */","('adjacentLength', {'INSTRUCTION': {'covered': 7, 'missed': 0}, 'LINE': {'covered': 1, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",30.0,"  Given vectors for the hypotenuse and adjacent side of a right angled  triangle and the length of the opposite side, determine how long the  adjacent side size.",29.0,"Determine how long the adjacent side size is, given the hypotenuse vector and the vector of adjacent sides.
+",Empty Method,Empty Method
+1100,cdk,org/openscience/cdk/structgen/VicinitySampler.java,/tool/structgen/src/main/java/org/openscience/cdk/structgen/VicinitySampler.java,sample,53-163,"/**
+     * Choose any possible quadruple of the set of atoms
+     * in ac and establish all of the possible bonding schemes according to
+     * Faulon's equations.
+     */
+public static List<IAtomContainer> sample(IAtomContainer ac){
+    LOGGER.debug(""RandomGenerator->mutate() Start"");
+    List<IAtomContainer> structures = new ArrayList<IAtomContainer>();
+    int nrOfAtoms = ac.getAtomCount();
+    double a11 = 0, a12 = 0, a22 = 0, a21 = 0;
+    double b11 = 0, lowerborder = 0, upperborder = 0;
+    double b12 = 0;
+    double b21 = 0;
+    double b22 = 0;
+    double[] cmax = new double[4];
+    double[] cmin = new double[4];
+    IAtomContainer newAc = null;
+    IAtom ax1 = null, ax2 = null, ay1 = null, ay2 = null;
+    IBond b1 = null, b2 = null, b3 = null, b4 = null;
+    // int[] choices = new int[3];
+    /* We need at least two non-zero bonds in order to be successful */
+    int nonZeroBondsCounter = 0;
+    for (int x1 = 0; x1 < nrOfAtoms; x1++) {
+        for (int x2 = x1 + 1; x2 < nrOfAtoms; x2++) {
+            for (int y1 = x2 + 1; y1 < nrOfAtoms; y1++) {
+                for (int y2 = y1 + 1; y2 < nrOfAtoms; y2++) {
+                    nonZeroBondsCounter = 0;
+                    ax1 = ac.getAtom(x1);
+                    ay1 = ac.getAtom(y1);
+                    ax2 = ac.getAtom(x2);
+                    ay2 = ac.getAtom(y2);
+                    /* Get four bonds for these four atoms */
+                    b1 = ac.getBond(ax1, ay1);
+                    if (b1 != null) {
+                        a11 = BondManipulator.destroyBondOrder(b1.getOrder());
+                        nonZeroBondsCounter++;
+                    } else {
+                        a11 = 0;
+                    }
+                    b2 = ac.getBond(ax1, ay2);
+                    if (b2 != null) {
+                        a12 = BondManipulator.destroyBondOrder(b2.getOrder());
+                        nonZeroBondsCounter++;
+                    } else {
+                        a12 = 0;
+                    }
+                    b3 = ac.getBond(ax2, ay1);
+                    if (b3 != null) {
+                        a21 = BondManipulator.destroyBondOrder(b3.getOrder());
+                        nonZeroBondsCounter++;
+                    } else {
+                        a21 = 0;
+                    }
+                    b4 = ac.getBond(ax2, ay2);
+                    if (b4 != null) {
+                        a22 = BondManipulator.destroyBondOrder(b4.getOrder());
+                        nonZeroBondsCounter++;
+                    } else {
+                        a22 = 0;
+                    }
+                    if (nonZeroBondsCounter > 1) {
+                        /*
+                             * Compute the range for b11 (see Faulons formulae
+                             * for details)
+                             */
+                        cmax[0] = 0;
+                        cmax[1] = a11 - a22;
+                        cmax[2] = a11 + a12 - 3;
+                        cmax[3] = a11 + a21 - 3;
+                        cmin[0] = 3;
+                        cmin[1] = a11 + a12;
+                        cmin[2] = a11 + a21;
+                        cmin[3] = a11 - a22 + 3;
+                        lowerborder = MathTools.max(cmax);
+                        upperborder = MathTools.min(cmin);
+                        for (b11 = lowerborder; b11 <= upperborder; b11++) {
+                            if (b11 != a11) {
+                                b12 = a11 + a12 - b11;
+                                b21 = a11 + a21 - b11;
+                                b22 = a22 - a11 + b11;
+                                LOGGER.debug(""Trying atom combination : "" + x1 + "":"" + x2 + "":"" + y1 + "":"" + y2);
+                                try {
+                                    newAc = (IAtomContainer) ac.clone();
+                                    change(newAc, x1, y1, x2, y2, b11, b12, b21, b22);
+                                    if (ConnectivityChecker.isConnected(newAc)) {
+                                        structures.add(newAc);
+                                    } else {
+                                        LOGGER.debug(""not connected"");
+                                    }
+                                } catch (CloneNotSupportedException e) {
+                                    LOGGER.error(""Cloning exception: "" + e.getMessage());
+                                    LOGGER.debug(e);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return structures;
+}","public static List<IAtomContainer> sample(IAtomContainer ac){
+    LOGGER.debug(""RandomGenerator->mutate() Start"");
+    List<IAtomContainer> structures = new ArrayList<IAtomContainer>();
+    int nrOfAtoms = ac.getAtomCount();
+    double a11 = 0, a12 = 0, a22 = 0, a21 = 0;
+    double b11 = 0, lowerborder = 0, upperborder = 0;
+    double b12 = 0;
+    double b21 = 0;
+    double b22 = 0;
+    double[] cmax = new double[4];
+    double[] cmin = new double[4];
+    IAtomContainer newAc = null;
+    IAtom ax1 = null, ax2 = null, ay1 = null, ay2 = null;
+    IBond b1 = null, b2 = null, b3 = null, b4 = null;
+    // int[] choices = new int[3];
+    /* We need at least two non-zero bonds in order to be successful */
+    int nonZeroBondsCounter = 0;
+    for (int x1 = 0; x1 < nrOfAtoms; x1++) {
+        for (int x2 = x1 + 1; x2 < nrOfAtoms; x2++) {
+            for (int y1 = x2 + 1; y1 < nrOfAtoms; y1++) {
+                for (int y2 = y1 + 1; y2 < nrOfAtoms; y2++) {
+                    nonZeroBondsCounter = 0;
+                    ax1 = ac.getAtom(x1);
+                    ay1 = ac.getAtom(y1);
+                    ax2 = ac.getAtom(x2);
+                    ay2 = ac.getAtom(y2);
+                    /* Get four bonds for these four atoms */
+                    b1 = ac.getBond(ax1, ay1);
+                    if (b1 != null) {
+                        a11 = BondManipulator.destroyBondOrder(b1.getOrder());
+                        nonZeroBondsCounter++;
+                    } else {
+                        a11 = 0;
+                    }
+                    b2 = ac.getBond(ax1, ay2);
+                    if (b2 != null) {
+                        a12 = BondManipulator.destroyBondOrder(b2.getOrder());
+                        nonZeroBondsCounter++;
+                    } else {
+                        a12 = 0;
+                    }
+                    b3 = ac.getBond(ax2, ay1);
+                    if (b3 != null) {
+                        a21 = BondManipulator.destroyBondOrder(b3.getOrder());
+                        nonZeroBondsCounter++;
+                    } else {
+                        a21 = 0;
+                    }
+                    b4 = ac.getBond(ax2, ay2);
+                    if (b4 != null) {
+                        a22 = BondManipulator.destroyBondOrder(b4.getOrder());
+                        nonZeroBondsCounter++;
+                    } else {
+                        a22 = 0;
+                    }
+                    if (nonZeroBondsCounter > 1) {
+                        /*
+                             * Compute the range for b11 (see Faulons formulae
+                             * for details)
+                             */
+                        cmax[0] = 0;
+                        cmax[1] = a11 - a22;
+                        cmax[2] = a11 + a12 - 3;
+                        cmax[3] = a11 + a21 - 3;
+                        cmin[0] = 3;
+                        cmin[1] = a11 + a12;
+                        cmin[2] = a11 + a21;
+                        cmin[3] = a11 - a22 + 3;
+                        lowerborder = MathTools.max(cmax);
+                        upperborder = MathTools.min(cmin);
+                        for (b11 = lowerborder; b11 <= upperborder; b11++) {
+                            if (b11 != a11) {
+                                b12 = a11 + a12 - b11;
+                                b21 = a11 + a21 - b11;
+                                b22 = a22 - a11 + b11;
+                                LOGGER.debug(""Trying atom combination : "" + x1 + "":"" + x2 + "":"" + y1 + "":"" + y2);
+                                try {
+                                    newAc = (IAtomContainer) ac.clone();
+                                    change(newAc, x1, y1, x2, y2, b11, b12, b21, b22);
+                                    if (ConnectivityChecker.isConnected(newAc)) {
+                                        structures.add(newAc);
+                                    } else {
+                                        LOGGER.debug(""not connected"");
+                                    }
+                                } catch (CloneNotSupportedException e) {
+                                    LOGGER.error(""Cloning exception: "" + e.getMessage());
+                                    LOGGER.debug(e);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return structures;
+}","/**
+     * Choose any possible quadruple of the set of atoms
+     * in ac and establish all of the possible bonding schemes according to
+     * Faulon's equations.
+     */","('sample', {'INSTRUCTION': {'covered': 307, 'missed': 18}, 'BRANCH': {'covered': 23, 'missed': 1}, 'LINE': {'covered': 66, 'missed': 4}, 'COMPLEXITY': {'covered': 12, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",693.0,  Choose any possible quadruple of the set of atoms  in ac and establish all of the possible bonding schemes according to  Faulon's equations.,25.0,Return a new sample of structures built from the IAtomContainer object given as input.," public static List<IAtomContainer> sample(IAtomContainer ac){
+        return new VicinitySampler().sample(ac, 1);         
+ }",NOT PASS
+1021,openapi-generator,org/openapitools/codegen/utils/ModelUtils.java,/modules/openapi-generator/src/main/java/org/openapitools/codegen/utils/ModelUtils.java,isFreeFormObject,753-836,"/**
+     * Check to see if the schema is a free form object.
+     *
+     * A free form object is an object (i.e. 'type: object' in a OAS document) that:
+     * 1) Does not define properties, and
+     * 2) Is not a composed schema (no anyOf, oneOf, allOf), and
+     * 3) additionalproperties is not defined, or additionalproperties: true, or additionalproperties: {}.
+     *
+     * Examples:
+     *
+     * components:
+     *   schemas:
+     *     arbitraryObject:
+     *       type: object
+     *       description: This is a free-form object.
+     *         The value must be a map of strings to values. The value cannot be 'null'.
+     *         It cannot be array, string, integer, number.
+     *     arbitraryNullableObject:
+     *       type: object
+     *       description: This is a free-form object.
+     *         The value must be a map of strings to values. The value can be 'null',
+     *         It cannot be array, string, integer, number.
+     *       nullable: true
+     *     arbitraryTypeValue:
+     *       description: This is NOT a free-form object.
+     *         The value can be any type except the 'null' value.
+     *
+     * @param openAPI the object that encapsulates the OAS document.
+     * @param schema potentially containing a '$ref'
+     * @return true if it's a free-form object
+     */
+public static boolean isFreeFormObject(OpenAPI openAPI, Schema schema){
+    if (schema == null) {
+        once(LOGGER).error(""Schema cannot be null in isFreeFormObject check"");
+        return false;
+    }
+    if (schema instanceof ComposedSchema) {
+        ComposedSchema cs = (ComposedSchema) schema;
+        List<Schema> interfaces = ModelUtils.getInterfaces(cs);
+        if (interfaces != null && !interfaces.isEmpty()) {
+            return false;
+        }
+    }
+    if (""object"".equals(schema.getType())) {
+        if ((schema.getProperties() == null || schema.getProperties().isEmpty())) {
+            Schema addlProps = getAdditionalProperties(openAPI, schema);
+            if (schema.getExtensions() != null && schema.getExtensions().containsKey(freeFormExplicit)) {
+                boolean isFreeFormExplicit = Boolean.parseBoolean(String.valueOf(schema.getExtensions().get(freeFormExplicit)));
+                if (!isFreeFormExplicit && addlProps != null && addlProps.getProperties() != null && !addlProps.getProperties().isEmpty()) {
+                    once(LOGGER).error(String.format(Locale.ROOT, ""Potentially confusing usage of %s within model which defines additional properties"", freeFormExplicit));
+                }
+                return isFreeFormExplicit;
+            }
+            if (addlProps == null) {
+                return true;
+            } else {
+                if (addlProps instanceof ObjectSchema) {
+                    ObjectSchema objSchema = (ObjectSchema) addlProps;
+                    if (objSchema.getProperties() == null || objSchema.getProperties().isEmpty()) {
+                        return true;
+                    }
+                } else if (addlProps instanceof Schema) {
+                    if (addlProps.getType() == null && addlProps.get$ref() == null && (addlProps.getProperties() == null || addlProps.getProperties().isEmpty())) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}","public static boolean isFreeFormObject(OpenAPI openAPI, Schema schema){
+    if (schema == null) {
+        once(LOGGER).error(""Schema cannot be null in isFreeFormObject check"");
+        return false;
+    }
+    if (schema instanceof ComposedSchema) {
+        ComposedSchema cs = (ComposedSchema) schema;
+        List<Schema> interfaces = ModelUtils.getInterfaces(cs);
+        if (interfaces != null && !interfaces.isEmpty()) {
+            return false;
+        }
+    }
+    if (""object"".equals(schema.getType())) {
+        if ((schema.getProperties() == null || schema.getProperties().isEmpty())) {
+            Schema addlProps = getAdditionalProperties(openAPI, schema);
+            if (schema.getExtensions() != null && schema.getExtensions().containsKey(freeFormExplicit)) {
+                boolean isFreeFormExplicit = Boolean.parseBoolean(String.valueOf(schema.getExtensions().get(freeFormExplicit)));
+                if (!isFreeFormExplicit && addlProps != null && addlProps.getProperties() != null && !addlProps.getProperties().isEmpty()) {
+                    once(LOGGER).error(String.format(Locale.ROOT, ""Potentially confusing usage of %s within model which defines additional properties"", freeFormExplicit));
+                }
+                return isFreeFormExplicit;
+            }
+            if (addlProps == null) {
+                return true;
+            } else {
+                if (addlProps instanceof ObjectSchema) {
+                    ObjectSchema objSchema = (ObjectSchema) addlProps;
+                    if (objSchema.getProperties() == null || objSchema.getProperties().isEmpty()) {
+                        return true;
+                    }
+                } else if (addlProps instanceof Schema) {
+                    if (addlProps.getType() == null && addlProps.get$ref() == null && (addlProps.getProperties() == null || addlProps.getProperties().isEmpty())) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}","/**
+     * Check to see if the schema is a free form object.
+     *
+     * A free form object is an object (i.e. 'type: object' in a OAS document) that:
+     * 1) Does not define properties, and
+     * 2) Is not a composed schema (no anyOf, oneOf, allOf), and
+     * 3) additionalproperties is not defined, or additionalproperties: true, or additionalproperties: {}.
+     *
+     * Examples:
+     *
+     * components:
+     *   schemas:
+     *     arbitraryObject:
+     *       type: object
+     *       description: This is a free-form object.
+     *         The value must be a map of strings to values. The value cannot be 'null'.
+     *         It cannot be array, string, integer, number.
+     *     arbitraryNullableObject:
+     *       type: object
+     *       description: This is a free-form object.
+     *         The value must be a map of strings to values. The value can be 'null',
+     *         It cannot be array, string, integer, number.
+     *       nullable: true
+     *     arbitraryTypeValue:
+     *       description: This is NOT a free-form object.
+     *         The value can be any type except the 'null' value.
+     *
+     * @param openAPI the object that encapsulates the OAS document.
+     * @param schema potentially containing a '$ref'
+     * @return true if it's a free-form object
+     */","('isFreeFormObject', {'INSTRUCTION': {'covered': 97, 'missed': 23}, 'BRANCH': {'covered': 33, 'missed': 11}, 'LINE': {'covered': 25, 'missed': 1}, 'COMPLEXITY': {'covered': 15, 'missed': 8}, 'METHOD': {'covered': 1, 'missed': 0}})",341.0,  Check to see if the schema is a free form object.,12.0,"Given an OpenAPI and schema object as input, check if the schema is a freeFormObject."," public static boolean isFreeFormObject(OpenAPI openAPI, Schema schema){
+        if (schema instanceof ObjectSchema) {
+            return true;
+        }
+        if (schema instanceof ComposedSchema) {
+            ComposedSchema composedSchema = (ComposedSchema) schema;
+            if (composedSchema.getAllOf() != null) {
+                for (Schema allOfSchema : composedSchema.getAllOf()) {
+                    if (isFreeFormObject(openAPI, allOfSchema)) {
+                        return true;
+                    }
+                }
+            }
+            if (composedSchema.getOneOf() != null) {
+                for (Schema oneOfSchema : composedSchema.getOneOf()) {
+                    if (isFreeFormObject(openAPI, oneOfSchema)) {
+                        return true;
+                    }
+                }
+            }
+            if (composedSchema.getAnyOf() != null) {
+                for (Schema anyOfSchema : composedSchema.getAnyOf()) {
+                    if (isFreeFormObject(openAPI, anyOfSchema)) {
+                        return true;
+                    }
+                }
+            }
+            if (composedSchema.getNot() != null) {
+                if (isFreeFormObject(openAPI, composedSchema.getNot())) {
+                    return true;
+                }
+            }
+            if (composedSchema.getProperties() != null) {
+                for (Map.Entry<String, Schema> entry : composedSchema.getProperties().entrySet()) {
+                    if (isFreeFormObject(openAPI, entry.getValue())) {
+                        return true;
+                    }
+                }
+            }
+            if (composedSchema.getAdditionalProperties() != null) {
+                if (isFreeFormObject(openAPI, composedSchema.getAdditionalProperties())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }",NOT PASS
+111,anserini,io/anserini/index/IndexReaderUtils.java,/src/main/java/io/anserini/index/IndexReaderUtils.java,computeQueryDocumentScoreWithSimilarity,673-689,"/**
+   * Computes the score of a document with respect to a query given a scoring function. Assumes Anserini's default
+   * analyzer.
+   *
+   * @param reader index reader
+   * @param docid docid of the document to score
+   * @param q query
+   * @param similarity scoring function
+   * @return the score of the document with respect to the query
+   * @throws IOException if error encountered during query
+   */
+public static float computeQueryDocumentScoreWithSimilarity(IndexReader reader, String docid, String q, Similarity similarity) throws IOException{
+    return computeQueryDocumentScoreWithSimilarityAndAnalyzer(reader, docid, q, similarity, IndexCollection.DEFAULT_ANALYZER);
+}","public static float computeQueryDocumentScoreWithSimilarity(IndexReader reader, String docid, String q, Similarity similarity) throws IOException{
+    return computeQueryDocumentScoreWithSimilarityAndAnalyzer(reader, docid, q, similarity, IndexCollection.DEFAULT_ANALYZER);
+}","/**
+   * Computes the score of a document with respect to a query given a scoring function. Assumes Anserini's default
+   * analyzer.
+   *
+   * @param reader index reader
+   * @param docid docid of the document to score
+   * @param q query
+   * @param similarity scoring function
+   * @return the score of the document with respect to the query
+   * @throws IOException if error encountered during query
+   */","('computeQueryDocumentScoreWithSimilarity', {'INSTRUCTION': {'covered': 7, 'missed': 0}, 'LINE': {'covered': 1, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",37.0,  Computes the score of a document with respect to a query given a scoring function.,16.0,"Compute the query document score with similary given the following objects as input: (IndexReader reader), (String docid), (String q), (Similarity similarity)."," public static float computeQueryDocumentScoreWithSimilarity(IndexReader reader, String docid, String q, Similarity similarity) throws IOException{
+    IndexSearcher searcher = new IndexSearcher(reader);
+    searcher.setSimilarity(similarity);
+    Query query = new QueryParser(IndexArgs.CONTENTS, IndexCollection.DEFAULT_ANALYZER).parse(q);
+    TopDocs rs = searcher.search(query, 1);
+    return rs.scoreDocs.length == 0 ? 0 : rs.scoreDocs[0].score;      
+ }",NOT PASS
+767,dcache,org/dcache/auth/LoAs.java,/modules/common/src/main/java/org/dcache/auth/LoAs.java,withImpliedLoA,68-94,"/**
+     * Convert a set of asserted LoAs so it includes all equivalent LoAs.
+     *
+     * @param entity   the kind of identity asserted, if known.
+     * @param asserted a collection of LoA asserted by some external agent.
+     * @return all LoAs for this identity.
+     */
+public static EnumSet<LoA> withImpliedLoA(Optional<EntityDefinition> entity, Collection<LoA> asserted){
+    Map<LoA, LoA> mapping = entity.filter(PERSON::equals).map(e -> PERSONAL_EQUIVALENT_LOA).orElse(GENERIC_EQUIVALENT_LOA);
+    EnumSet<LoA> result = EnumSet.copyOf(asserted);
+    Collection<LoA> considered = asserted;
+    do {
+        EnumSet<LoA> additional = considered.stream().map(mapping::get).filter(Objects::nonNull).collect(Collectors.toCollection(() -> EnumSet.noneOf(LoA.class)));
+        result.addAll(additional);
+        considered = additional;
+    } while (!considered.isEmpty());
+    return result;
+}","public static EnumSet<LoA> withImpliedLoA(Optional<EntityDefinition> entity, Collection<LoA> asserted){
+    Map<LoA, LoA> mapping = entity.filter(PERSON::equals).map(e -> PERSONAL_EQUIVALENT_LOA).orElse(GENERIC_EQUIVALENT_LOA);
+    EnumSet<LoA> result = EnumSet.copyOf(asserted);
+    Collection<LoA> considered = asserted;
+    do {
+        EnumSet<LoA> additional = considered.stream().map(mapping::get).filter(Objects::nonNull).collect(Collectors.toCollection(() -> EnumSet.noneOf(LoA.class)));
+        result.addAll(additional);
+        considered = additional;
+    } while (!considered.isEmpty());
+    return result;
+}","/**
+     * Convert a set of asserted LoAs so it includes all equivalent LoAs.
+     *
+     * @param entity   the kind of identity asserted, if known.
+     * @param asserted a collection of LoA asserted by some external agent.
+     * @return all LoAs for this identity.
+     */","('withImpliedLoA', {'INSTRUCTION': {'covered': 44, 'missed': 0}, 'BRANCH': {'covered': 2, 'missed': 0}, 'LINE': {'covered': 13, 'missed': 0}, 'COMPLEXITY': {'covered': 2, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",145.0,  Convert a set of asserted LoAs so it includes all equivalent LoAs.,13.0,Convert a set of asserted LoAs into an EnumSet and return it.," public static EnumSet<LoA> withImpliedLoA(Optional<EntityDefinition> entity, Collection<LoA> asserted){
+      Objects.requireNonNull(asserted);
+      if (entity.isPresent() && entity.get() == PERSON) {
+          return asserted.stream()
+                  .map(loa -> PERSONAL_EQUIVALENT_LOA.getOrDefault(loa, loa))
+                  .collect(Collectors.toCollection(EnumSet::copyOf));
+      } else {
+          return asserted.stream()
+                  .map(loa -> GENERIC_EQUIVALENT_LOA.getOrDefault(loa, loa))
+                  .collect(Collectors.toCollection(EnumSet::copyOf));
+      }
+       }                ",NOT PASS
+39,weblogic-kubernetes-operator,oracle/kubernetes/operator/helpers/LegalNames.java,/operator/src/main/java/oracle/kubernetes/operator/helpers/LegalNames.java,toExternalServiceName,108-121,"/**
+   * Generates the introspector job name based on the given domainUid.
+   *
+   * @param domainUid domainUid
+   * @param serverName WebLogic server name
+   * @return String introspector job name
+   */
+public static String toExternalServiceName(String domainUid, String serverName){
+    return toDns1123LegalName(String.format(EXTERNAL_SERVICE_PATTERN, domainUid, serverName, getExternalServiceNameSuffix()));
+}","public static String toExternalServiceName(String domainUid, String serverName){
+    return toDns1123LegalName(String.format(EXTERNAL_SERVICE_PATTERN, domainUid, serverName, getExternalServiceNameSuffix()));
+}","/**
+   * Generates the introspector job name based on the given domainUid.
+   *
+   * @param domainUid domainUid
+   * @param serverName WebLogic server name
+   * @return String introspector job name
+   */","('toExternalServiceName', {'INSTRUCTION': {'covered': 18, 'missed': 0}, 'LINE': {'covered': 2, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",32.0,  Generates the introspector job name based on the given domainUid.,11.0,"Given a domainUid and a serverName as input, resolve the DNS name."," public static String toExternalServiceName(String domainUid, String serverName){
+    return toExternalServiceName(domainUid, serverName, DEFAULT_EXTERNAL_SERVICE_NAME_SUFFIX);      
+ }",NOT PASS
+387,jackson-databind,com/fasterxml/jackson/databind/util/ClassUtil.java,/src/main/java/com/fasterxml/jackson/databind/util/ClassUtil.java,closeOnFailAndThrowAsIOE,480-504,"/**
+     * Helper method that encapsulate logic in trying to close output generator
+     * in case of failure; useful mostly in forcing flush()ing as otherwise
+     * error conditions tend to be hard to diagnose. However, it is often the
+     * case that output state may be corrupt so we need to be prepared for
+     * secondary exception without masking original one.
+     *
+     * @since 2.8
+     */
+public static void closeOnFailAndThrowAsIOE(JsonGenerator g, Exception fail) throws IOException{
+    g.disable(JsonGenerator.Feature.AUTO_CLOSE_JSON_CONTENT);
+    try {
+        g.close();
+    } catch (Exception e) {
+        fail.addSuppressed(e);
+    }
+    throwIfIOE(fail);
+    throwIfRTE(fail);
+    throw new RuntimeException(fail);
+}","public static void closeOnFailAndThrowAsIOE(JsonGenerator g, Exception fail) throws IOException{
+    g.disable(JsonGenerator.Feature.AUTO_CLOSE_JSON_CONTENT);
+    try {
+        g.close();
+    } catch (Exception e) {
+        fail.addSuppressed(e);
+    }
+    throwIfIOE(fail);
+    throwIfRTE(fail);
+    throw new RuntimeException(fail);
+}","/**
+     * Helper method that encapsulate logic in trying to close output generator
+     * in case of failure; useful mostly in forcing flush()ing as otherwise
+     * error conditions tend to be hard to diagnose. However, it is often the
+     * case that output state may be corrupt so we need to be prepared for
+     * secondary exception without masking original one.
+     *
+     * @since 2.8
+     */","('closeOnFailAndThrowAsIOE', {'INSTRUCTION': {'covered': 25, 'missed': 8}, 'BRANCH': {'covered': 4, 'missed': 0}, 'LINE': {'covered': 10, 'missed': 4}, 'COMPLEXITY': {'covered': 3, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",66.0,  Helper method that encapsulate logic in trying to close output generator  in case of failure; useful mostly in forcing flush()ing as otherwise  error conditions tend to be hard to diagnose.,35.0,"Try to close the JsonGenerator object. If it fails, suppress the exception and add the Exception object to a list of suppressed exceptions."," public static void closeOnFailAndThrowAsIOE(JsonGenerator g, Exception fail) throws IOException{
+        if (g != null) {
+            try {
+                g.close();
+            } catch (IOException e) {
+                fail.addSuppressed(e);
+            }
+        }
+        throw fail;         
+ }",NOT PASS
+871,cucumber-reporting,net/masterthought/cucumber/reducers/ReportFeatureWithRetestMerger.java,/src/main/java/net/masterthought/cucumber/reducers/ReportFeatureWithRetestMerger.java,updateElements,40-74,"/**
+     * Updates feature's elements with items from the @elements list if an Id of the item coincides
+     * with an Id of any element from the @feature object. If there is no element in the @feature object
+     * then the item is appended to the end of the elements' list of the @feature.
+     *
+     * @param feature  - target object of Feature class.
+     * @param elements - list of elements which need to be inserted to the @feature with replacing
+     *                   or adding to the end.
+     */
+ void updateElements(Feature feature, Element[] elements){
+    for (int i = 0; i < elements.length; i++) {
+        Element current = elements[i];
+        if (current.isScenario()) {
+            checkArgument(current.getStartTime() != null, ERROR);
+            int indexOfPreviousResult = find(feature.getElements(), current);
+            boolean hasBackground = isBackground(i - 1, elements);
+            if (indexOfPreviousResult < 0) {
+                feature.addElements(hasBackground ? new Element[] { elements[i - 1], current } : new Element[] { current });
+            } else {
+                if (replaceIfExists(feature.getElements()[indexOfPreviousResult], current)) {
+                    feature.getElements()[indexOfPreviousResult] = current;
+                    if (hasBackground && isBackground(indexOfPreviousResult - 1, feature.getElements())) {
+                        feature.getElements()[indexOfPreviousResult - 1] = elements[i - 1];
+                    }
+                }
+            }
+        }
+    }
+}","void updateElements(Feature feature, Element[] elements){
+    for (int i = 0; i < elements.length; i++) {
+        Element current = elements[i];
+        if (current.isScenario()) {
+            checkArgument(current.getStartTime() != null, ERROR);
+            int indexOfPreviousResult = find(feature.getElements(), current);
+            boolean hasBackground = isBackground(i - 1, elements);
+            if (indexOfPreviousResult < 0) {
+                feature.addElements(hasBackground ? new Element[] { elements[i - 1], current } : new Element[] { current });
+            } else {
+                if (replaceIfExists(feature.getElements()[indexOfPreviousResult], current)) {
+                    feature.getElements()[indexOfPreviousResult] = current;
+                    if (hasBackground && isBackground(indexOfPreviousResult - 1, feature.getElements())) {
+                        feature.getElements()[indexOfPreviousResult - 1] = elements[i - 1];
+                    }
+                }
+            }
+        }
+    }
+}","/**
+     * Updates feature's elements with items from the @elements list if an Id of the item coincides
+     * with an Id of any element from the @feature object. If there is no element in the @feature object
+     * then the item is appended to the end of the elements' list of the @feature.
+     *
+     * @param feature  - target object of Feature class.
+     * @param elements - list of elements which need to be inserted to the @feature with replacing
+     *                   or adding to the end.
+     */","('updateElements', {'INSTRUCTION': {'covered': 74, 'missed': 25}, 'BRANCH': {'covered': 11, 'missed': 5}, 'LINE': {'covered': 14, 'missed': 2}, 'COMPLEXITY': {'covered': 5, 'missed': 4}, 'METHOD': {'covered': 1, 'missed': 0}})",195.0,  Updates feature's elements with items from the @elements list if an Id of the item coincides  with an Id of any element from the @feature object.,30.0,"Given as input a Feature object and an Element[] array, updates the value of the Feature object using the given elements."," void updateElements(Feature feature, Element[] elements){
+        checkArgument(feature.getStart_timestamp() != null, ERROR);
+        for (Element element : elements) {
+            if (element.getStart_timestamp() != null) {
+                if (ELEMENT_COMPARATOR.compare(element, feature.getStart_timestamp()) > 0) {
+                    feature.setStart_timestamp(element.getStart_timestamp());
+                }
+            }
+            if (element.getEnd_timestamp() != null) {
+                if (ELEMENT_COMPARATOR.compare(element, feature.getEnd_timestamp()) > 0) {
+                    feature.setEnd_timestamp(element.getEnd_timestamp());
+                }
+            }
+        }
+    }           ",NOT PASS
+955,matsim-libs,org/matsim/contrib/common/stats/FixedSampleSizeDiscretizer.java,/contribs/common/src/main/java/org/matsim/contrib/common/stats/FixedSampleSizeDiscretizer.java,create,37-92,"/**
+	 * Creates a new discretizer with bin borders defined such that each bin
+	 * would contain approximately <tt>size</tt> samples from <tt>samples</tt>.
+	 * 
+	 * Samples are sorted into bins in ascending order. If there are not
+	 * sufficient (less than <tt>size</tt>) samples to fill a further bin, the
+	 * remaining samples are sorted into the last bin. That is, the last bin is
+	 * the only bin that may contain more than <tt>size</tt> samples.
+	 * 
+	 * @param samples
+	 *            an array with samples.
+	 * @param size
+	 *            the number of samples per bin.
+	 * @return a new discretizer.
+	 */
+public static FixedBordersDiscretizer create(double[] samples, int size){
+    TDoubleArrayList borders;
+    double min = Double.MAX_VALUE;
+    double max = -Double.MAX_VALUE;
+    TDoubleIntHashMap hist = new TDoubleIntHashMap(samples.length);
+    for (int i = 0; i < samples.length; i++) {
+        hist.adjustOrPutValue(samples[i], 1, 1);
+        min = Math.min(min, samples[i]);
+        max = Math.max(max, samples[i]);
+    }
+    double[] keys = hist.keys();
+    Arrays.sort(keys);
+    borders = new TDoubleArrayList(keys.length);
+    borders.add(min - 1E-10);
+    int binsize = 0;
+    int n = 0;
+    for (int i = 0; i < keys.length; i++) {
+        int nBin = hist.get(keys[i]);
+        binsize += nBin;
+        n += nBin;
+        if (binsize >= size && i > 0) {
+            // sufficient samples for the
+            // current bin
+            if (samples.length - n >= binsize) {
+                // sufficient remaining
+                // samples to fill the
+                // next bin
+                borders.add(keys[i]);
+                binsize = 0;
+            }
+        }
+    }
+    if (binsize > 0)
+        borders.add(max);
+    return new FixedBordersDiscretizer(borders.toArray());
+}","public static FixedBordersDiscretizer create(double[] samples, int size){
+    TDoubleArrayList borders;
+    double min = Double.MAX_VALUE;
+    double max = -Double.MAX_VALUE;
+    TDoubleIntHashMap hist = new TDoubleIntHashMap(samples.length);
+    for (int i = 0; i < samples.length; i++) {
+        hist.adjustOrPutValue(samples[i], 1, 1);
+        min = Math.min(min, samples[i]);
+        max = Math.max(max, samples[i]);
+    }
+    double[] keys = hist.keys();
+    Arrays.sort(keys);
+    borders = new TDoubleArrayList(keys.length);
+    borders.add(min - 1E-10);
+    int binsize = 0;
+    int n = 0;
+    for (int i = 0; i < keys.length; i++) {
+        int nBin = hist.get(keys[i]);
+        binsize += nBin;
+        n += nBin;
+        if (binsize >= size && i > 0) {
+            // sufficient samples for the
+            // current bin
+            if (samples.length - n >= binsize) {
+                // sufficient remaining
+                // samples to fill the
+                // next bin
+                borders.add(keys[i]);
+                binsize = 0;
+            }
+        }
+    }
+    if (binsize > 0)
+        borders.add(max);
+    return new FixedBordersDiscretizer(borders.toArray());
+}","/**
+	 * Creates a new discretizer with bin borders defined such that each bin
+	 * would contain approximately <tt>size</tt> samples from <tt>samples</tt>.
+	 * 
+	 * Samples are sorted into bins in ascending order. If there are not
+	 * sufficient (less than <tt>size</tt>) samples to fill a further bin, the
+	 * remaining samples are sorted into the last bin. That is, the last bin is
+	 * the only bin that may contain more than <tt>size</tt> samples.
+	 * 
+	 * @param samples
+	 *            an array with samples.
+	 * @param size
+	 *            the number of samples per bin.
+	 * @return a new discretizer.
+	 */","('create', {'INSTRUCTION': {'covered': 112, 'missed': 0}, 'BRANCH': {'covered': 10, 'missed': 2}, 'LINE': {'covered': 24, 'missed': 0}, 'COMPLEXITY': {'covered': 5, 'missed': 2}, 'METHOD': {'covered': 1, 'missed': 0}})",252.0,  Creates a new discretizer with bin borders defined such that each bin  would contain approximately <tt>size</tt> samples from <tt>samples</tt>.,32.0,Return a new FixedBordersDiscretizer using the new array of borders.," public static FixedBordersDiscretizer create(double[] samples, int size){
+    return new FixedBordersDiscretizer(samples, size);      
+ }",NOT PASS
+312,cdk,org/openscience/cdk/geometry/cip/CIPTool.java,/descriptor/cip/src/main/java/org/openscience/cdk/geometry/cip/CIPTool.java,order,235-247,"/**
+     * Reorders the {@link ILigand} objects in the array according to the CIP rules.
+     *
+     * @param ligands Array of {@link ILigand}s to be reordered.
+     * @return        Reordered array of {@link ILigand}s.
+     */
+public static ILigand[] order(ILigand[] ligands){
+    ILigand[] newLigands = new ILigand[ligands.length];
+    System.arraycopy(ligands, 0, newLigands, 0, ligands.length);
+    Arrays.sort(newLigands, cipRule);
+    return newLigands;
+}","public static ILigand[] order(ILigand[] ligands){
+    ILigand[] newLigands = new ILigand[ligands.length];
+    System.arraycopy(ligands, 0, newLigands, 0, ligands.length);
+    Arrays.sort(newLigands, cipRule);
+    return newLigands;
+}","/**
+     * Reorders the {@link ILigand} objects in the array according to the CIP rules.
+     *
+     * @param ligands Array of {@link ILigand}s to be reordered.
+     * @return        Reordered array of {@link ILigand}s.
+     */","('order', {'INSTRUCTION': {'covered': 16, 'missed': 0}, 'LINE': {'covered': 4, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",56.0,  Reorders the {@link ILigand} objects in the array according to the CIP rules.,17.0,Return a new ILigand sorted array.," public static ILigand[] order(ILigand[] ligands){
+        Arrays.sort(ligands, cipRule);
+        return ligands;
+    }",NOT PASS
+700,egeria,org/odpi/openmetadata/accessservices/assetconsumer/rest/LogRecordRequestBody.java,/open-metadata-implementation/access-services/asset-consumer/asset-consumer-api/src/main/java/org/odpi/openmetadata/accessservices/assetconsumer/rest/LogRecordRequestBody.java,equals,186-209,"/**
+     * Equals method that returns true if containing properties are the same.
+     *
+     * @param objectToCompare object to compare
+     * @return boolean result of comparison
+     */
+public boolean equals(Object objectToCompare){
+    if (this == objectToCompare) {
+        return true;
+    }
+    if (objectToCompare == null || getClass() != objectToCompare.getClass()) {
+        return false;
+    }
+    LogRecordRequestBody that = (LogRecordRequestBody) objectToCompare;
+    return Objects.equals(getConnectorInstanceId(), that.getConnectorInstanceId()) && Objects.equals(getConnectionName(), that.getConnectionName()) && Objects.equals(getConnectorType(), that.getConnectorType()) && Objects.equals(getContextId(), that.getContextId()) && Objects.equals(getMessage(), that.getMessage());
+}","public boolean equals(Object objectToCompare){
+    if (this == objectToCompare) {
+        return true;
+    }
+    if (objectToCompare == null || getClass() != objectToCompare.getClass()) {
+        return false;
+    }
+    LogRecordRequestBody that = (LogRecordRequestBody) objectToCompare;
+    return Objects.equals(getConnectorInstanceId(), that.getConnectorInstanceId()) && Objects.equals(getConnectionName(), that.getConnectionName()) && Objects.equals(getConnectorType(), that.getConnectorType()) && Objects.equals(getContextId(), that.getContextId()) && Objects.equals(getMessage(), that.getMessage());
+}","/**
+     * Equals method that returns true if containing properties are the same.
+     *
+     * @param objectToCompare object to compare
+     * @return boolean result of comparison
+     */","('equals', {'INSTRUCTION': {'covered': 51, 'missed': 0}, 'BRANCH': {'covered': 11, 'missed': 5}, 'LINE': {'covered': 10, 'missed': 0}, 'COMPLEXITY': {'covered': 4, 'missed': 5}, 'METHOD': {'covered': 1, 'missed': 0}})",125.0,  Equals method that returns true if containing properties are the same.,12.0,"Return true if the given object given as input is equal to the current instance. False, otherwise."," public boolean equals(Object objectToCompare){
+     
+      if (objectToCompare == null)
+      {
+            return false;
+      }
+     
+      if (objectToCompare == this)
+      {
+            return true;
+      }
+     
+      if (objectToCompare.getClass() != getClass())
+      {
+            return false;
+      }
+     
+      LogRecordRequestBody rhs = (LogRecordRequestBody) objectToCompare;
+      return Objects.equals(connectorInstanceId, rhs.connectorInstanceId) &&
+                 Objects.equals(connectionName, rhs.connectionName) &&
+                 Objects.equals(connectorType, rhs.connectorType) &&
+                 Objects.equals(contextId, rhs.contextId) &&
+                 Objects.equals(message, rhs.message);          
+ }",PASS
+394,tablesaw,tech/tablesaw/table/TableSlice.java,/core/src/main/java/tech/tablesaw/table/TableSlice.java,sourceRowNumberIterator,191-205,"/**
+   * IntIterator of source table row numbers that are present in this view. This can be used to in
+   * combination with the source table to iterate over the cells of a column in a sorted order
+   * without copying the column.
+   *
+   * @return an int iterator of row numbers in the source table that are present in this view.
+   */
+protected PrimitiveIterator.OfInt sourceRowNumberIterator(){
+    if (this.isSorted()) {
+        return Arrays.stream(sortOrder).iterator();
+    } else if (this.hasSelection()) {
+        return selection.iterator();
+    }
+    return Selection.withRange(0, table.rowCount()).iterator();
+}","protected PrimitiveIterator.OfInt sourceRowNumberIterator(){
+    if (this.isSorted()) {
+        return Arrays.stream(sortOrder).iterator();
+    } else if (this.hasSelection()) {
+        return selection.iterator();
+    }
+    return Selection.withRange(0, table.rowCount()).iterator();
+}","/**
+   * IntIterator of source table row numbers that are present in this view. This can be used to in
+   * combination with the source table to iterate over the cells of a column in a sorted order
+   * without copying the column.
+   *
+   * @return an int iterator of row numbers in the source table that are present in this view.
+   */","('sourceRowNumberIterator', {'INSTRUCTION': {'covered': 22, 'missed': 0}, 'BRANCH': {'covered': 4, 'missed': 0}, 'LINE': {'covered': 5, 'missed': 0}, 'COMPLEXITY': {'covered': 3, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",67.0,  IntIterator of source table row numbers that are present in this view.,13.0,Return a PrimitiveIterator.OfInt iterator.," protected PrimitiveIterator.OfInt sourceRowNumberIterator(){
+    if (hasSelection()) {
+      return selection.rowNumberIterator();
+    }
+    return IntStream.range(0, table.rowCount()).iterator();
+  }",NOT PASS
+674,liquibase,liquibase/integration/commandline/Main.java,/liquibase-core/src/main/java/liquibase/integration/commandline/Main.java,isNoArgCommand,680-699,"/**
+     * Returns true if the given main command arg needs no special parameters.
+     *
+     * @param arg the main command to test
+     * @return true if arg is a valid main command and needs no special parameters, false in all other cases
+     */
+private static boolean isNoArgCommand(String arg){
+    return COMMANDS.MIGRATE.equals(arg) || COMMANDS.MIGRATE_SQL.equalsIgnoreCase(arg) || COMMANDS.UPDATE.equalsIgnoreCase(arg) || COMMANDS.UPDATE_SQL.equalsIgnoreCase(arg) || COMMANDS.UPDATE_TESTING_ROLLBACK.equalsIgnoreCase(arg) || COMMANDS.LIST_LOCKS.equalsIgnoreCase(arg) || COMMANDS.RELEASE_LOCKS.equalsIgnoreCase(arg) || COMMANDS.VALIDATE.equalsIgnoreCase(arg) || COMMANDS.HELP.equalsIgnoreCase(arg) || COMMANDS.CLEAR_CHECKSUMS.equalsIgnoreCase(arg) || COMMANDS.CHANGELOG_SYNC.equalsIgnoreCase(arg) || COMMANDS.CHANGELOG_SYNC_SQL.equalsIgnoreCase(arg);
+}","private static boolean isNoArgCommand(String arg){
+    return COMMANDS.MIGRATE.equals(arg) || COMMANDS.MIGRATE_SQL.equalsIgnoreCase(arg) || COMMANDS.UPDATE.equalsIgnoreCase(arg) || COMMANDS.UPDATE_SQL.equalsIgnoreCase(arg) || COMMANDS.UPDATE_TESTING_ROLLBACK.equalsIgnoreCase(arg) || COMMANDS.LIST_LOCKS.equalsIgnoreCase(arg) || COMMANDS.RELEASE_LOCKS.equalsIgnoreCase(arg) || COMMANDS.VALIDATE.equalsIgnoreCase(arg) || COMMANDS.HELP.equalsIgnoreCase(arg) || COMMANDS.CLEAR_CHECKSUMS.equalsIgnoreCase(arg) || COMMANDS.CHANGELOG_SYNC.equalsIgnoreCase(arg) || COMMANDS.CHANGELOG_SYNC_SQL.equalsIgnoreCase(arg);
+}","/**
+     * Returns true if the given main command arg needs no special parameters.
+     *
+     * @param arg the main command to test
+     * @return true if arg is a valid main command and needs no special parameters, false in all other cases
+     */","('isNoArgCommand', {'INSTRUCTION': {'covered': 52, 'missed': 0}, 'BRANCH': {'covered': 24, 'missed': 0}, 'LINE': {'covered': 12, 'missed': 0}, 'COMPLEXITY': {'covered': 13, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",119.0,  Returns true if the given main command arg needs no special parameters.,13.0,"Return true if the string arg given as input matches one of the following: (COMMANDS.MIGRATE), (COMMANDS.MIGRATE_SQL), (COMMANDS.UPDATE), (COMMANDS.UPDATE_SQL, (COMMANDS.UPDATE_TESTING_ROLLBACK), (COMMANDS.LIST_LOCKS), (COMMANDS.RELEASE_LOCKS), (COMMANDS.VALIDATE), (COMMANDS.HELP), (COMMANDS.CLEAR_CHECKSUMS), (COMMANDS.CHANGELOG_SYNC), (COMMANDS.CHANGELOG_SYNC_SQL)."," private static boolean isNoArgCommand(String arg){
+        return COMMANDS.MIGRATE.equals(arg)
+                || COMMANDS.MIGRATE_SQL.equalsIgnoreCase(arg)
+                || COMMANDS.UPDATE.equalsIgnoreCase(arg)
+                || COMMANDS.UPDATE_SQL.equalsIgnoreCase(arg)
+                || COMMANDS.UPDATE_TESTING_ROLLBACK.equalsIgnoreCase(arg)
+                || COMMANDS.LIST_LOCKS.equalsIgnoreCase(arg)
+                || COMMANDS.RELEASE_LOCKS.equalsIgnoreCase(arg)
+                || COMMANDS.VALIDATE.equalsIgnoreCase(arg)
+                || COMMANDS.HELP.equalsIgnoreCase(arg)
+                || COMMANDS.CLEAR_CHECKSUMS.equalsIgnoreCase(arg)
+                || COMMANDS.CHANGELOG_SYNC.equalsIgnoreCase(arg)
+                || COMMANDS.CHANGELOG_SYNC_SQL.equalsIgnoreCase(arg);           
+ }",PASS
+440,openapi-generator,org/openapitools/codegen/utils/ModelUtils.java,/modules/openapi-generator/src/main/java/org/openapitools/codegen/utils/ModelUtils.java,isMapSchema,477-528,"/**
+     * Return true if the specified 'schema' is an object that can be extended with additional properties.
+     * Additional properties means a Schema should support all explicitly defined properties plus any
+     * undeclared properties.
+     *
+     * A MapSchema differs from an ObjectSchema in the following way:
+     * - An ObjectSchema is not extensible, i.e. it has a fixed number of properties.
+     * - A MapSchema is an object that can be extended with an arbitrary set of properties.
+     *   The payload may include dynamic properties.
+     *
+     * Note that isMapSchema returns true for a composed schema (allOf, anyOf, oneOf) that also defines
+     * additionalproperties.
+     *
+     * For example, an OpenAPI schema is considered a MapSchema in the following scenarios:
+     *
+     *   type: object
+     *   additionalProperties: true
+     *
+     *   type: object
+     *   additionalProperties:
+     *     type: object
+     *     properties:
+     *       code:
+     *         type: integer
+     *
+     *   allOf:
+     *     - $ref: '#/components/schemas/Class1'
+     *     - $ref: '#/components/schemas/Class2'
+     *   additionalProperties: true
+     *
+     * @param schema the OAS schema
+     * @return true if the specified schema is a Map schema.
+     */
+public static boolean isMapSchema(Schema schema){
+    if (schema instanceof MapSchema) {
+        return true;
+    }
+    if (schema == null) {
+        return false;
+    }
+    if (schema.getAdditionalProperties() instanceof Schema) {
+        return true;
+    }
+    if (schema.getAdditionalProperties() instanceof Boolean && (Boolean) schema.getAdditionalProperties()) {
+        return true;
+    }
+    return false;
+}","public static boolean isMapSchema(Schema schema){
+    if (schema instanceof MapSchema) {
+        return true;
+    }
+    if (schema == null) {
+        return false;
+    }
+    if (schema.getAdditionalProperties() instanceof Schema) {
+        return true;
+    }
+    if (schema.getAdditionalProperties() instanceof Boolean && (Boolean) schema.getAdditionalProperties()) {
+        return true;
+    }
+    return false;
+}","/**
+     * Return true if the specified 'schema' is an object that can be extended with additional properties.
+     * Additional properties means a Schema should support all explicitly defined properties plus any
+     * undeclared properties.
+     *
+     * A MapSchema differs from an ObjectSchema in the following way:
+     * - An ObjectSchema is not extensible, i.e. it has a fixed number of properties.
+     * - A MapSchema is an object that can be extended with an arbitrary set of properties.
+     *   The payload may include dynamic properties.
+     *
+     * Note that isMapSchema returns true for a composed schema (allOf, anyOf, oneOf) that also defines
+     * additionalproperties.
+     *
+     * For example, an OpenAPI schema is considered a MapSchema in the following scenarios:
+     *
+     *   type: object
+     *   additionalProperties: true
+     *
+     *   type: object
+     *   additionalProperties:
+     *     type: object
+     *     properties:
+     *       code:
+     *         type: integer
+     *
+     *   allOf:
+     *     - $ref: '#/components/schemas/Class1'
+     *     - $ref: '#/components/schemas/Class2'
+     *   additionalProperties: true
+     *
+     * @param schema the OAS schema
+     * @return true if the specified schema is a Map schema.
+     */","('isMapSchema', {'INSTRUCTION': {'covered': 24, 'missed': 4}, 'BRANCH': {'covered': 8, 'missed': 2}, 'LINE': {'covered': 7, 'missed': 2}, 'COMPLEXITY': {'covered': 4, 'missed': 2}, 'METHOD': {'covered': 1, 'missed': 0}})",74.0,  Return true if the specified 'schema' is an object that can be extended with additional properties.,18.0,Return true if the Schema object given as input is an instance of MapSchema. False otherwise," public static boolean isMapSchema(Schema schema){
+        if (schema instanceof MapSchema) {
+            return true;
+        }
+        return false;
+    }",NOT PASS
+269,acs-aem-commons,com/adobe/acs/commons/httpcache/config/impl/HttpCacheConfigImpl.java,/bundle/src/main/java/com/adobe/acs/commons/httpcache/config/impl/HttpCacheConfigImpl.java,matches,385-401,"/**
+     * Matching the given data with the set of compiled patterns.
+     *
+     * @param patterns
+     * @param data
+     * @return
+     */
+private boolean matches(List<Pattern> patterns, String data){
+    for (Pattern pattern : patterns) {
+        final Matcher matcher = pattern.matcher(data);
+        if (matcher.matches()) {
+            return true;
+        }
+    }
+    return false;
+}","private boolean matches(List<Pattern> patterns, String data){
+    for (Pattern pattern : patterns) {
+        final Matcher matcher = pattern.matcher(data);
+        if (matcher.matches()) {
+            return true;
+        }
+    }
+    return false;
+}","/**
+     * Matching the given data with the set of compiled patterns.
+     *
+     * @param patterns
+     * @param data
+     * @return
+     */","('matches', {'INSTRUCTION': {'covered': 22, 'missed': 0}, 'BRANCH': {'covered': 4, 'missed': 0}, 'LINE': {'covered': 6, 'missed': 0}, 'COMPLEXITY': {'covered': 3, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",51.0,  Matching the given data with the set of compiled patterns.,11.0,"Return true if the String object given as input matches one of the pattern element in the given list of patterns. False, otherwise."," private boolean matches(List<Pattern> patterns, String data){
+        for (Pattern pattern : patterns) {
+            if (pattern.matcher(data).matches()) {
+                return true;
+            }
+        }
+        return false;
+    }",PASS
+315,cdk,org/openscience/cdk/io/MDLRXNReader.java,/storage/ctab/src/main/java/org/openscience/cdk/io/MDLRXNReader.java,readChemModel,192-205,"/**
+    * Read a IChemModel from a file in MDL RDF format.
+    *
+    * @param  chemModel The IChemModel
+    * @return           The IChemModel that was read from the RDF file
+    */
+private IChemModel readChemModel(IChemModel chemModel) throws CDKException{
+    IReactionSet setOfReactions = chemModel.getReactionSet();
+    if (setOfReactions == null) {
+        setOfReactions = chemModel.getBuilder().newInstance(IReactionSet.class);
+    }
+    chemModel.setReactionSet(readReactionSet(setOfReactions));
+    return chemModel;
+}","private IChemModel readChemModel(IChemModel chemModel) throws CDKException{
+    IReactionSet setOfReactions = chemModel.getReactionSet();
+    if (setOfReactions == null) {
+        setOfReactions = chemModel.getBuilder().newInstance(IReactionSet.class);
+    }
+    chemModel.setReactionSet(readReactionSet(setOfReactions));
+    return chemModel;
+}","/**
+    * Read a IChemModel from a file in MDL RDF format.
+    *
+    * @param  chemModel The IChemModel
+    * @return           The IChemModel that was read from the RDF file
+    */","('readChemModel', {'INSTRUCTION': {'covered': 20, 'missed': 0}, 'BRANCH': {'covered': 1, 'missed': 1}, 'LINE': {'covered': 5, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",56.0,  Read a IChemModel from a file in MDL RDF format.,11.0,"Given an ICHemModel as input, use the method setReactionSect to set those Reactions within chemModel. Finally, return the chemModel object."," private IChemModel readChemModel(IChemModel chemModel) throws CDKException{
+        String line;
+        try {
+            while ((line = input.readLine()) != null) {
+                if (line.startsWith(""M  V30 "")) {
+                    setReactionSect(chemModel, line);
+                }
+            }
+        } catch (IOException e) {
+            throw new CDKException(""IOException while reading MDL RXN file: "" + e.getMessage(), e);
+        }
+        return chemModel;           
+ }",NOT PASS
+930,cdk,org/openscience/cdk/qsar/descriptors/atomic/EffectiveAtomPolarizabilityDescriptor.java,/descriptor/qsaratomic/src/main/java/org/openscience/cdk/qsar/descriptors/atomic/EffectiveAtomPolarizabilityDescriptor.java,calculate,104-141,"/**
+     *  The method calculates the Effective Atom Polarizability of a given atom
+     *  It is needed to call the addExplicitHydrogensToSatisfyValency method from the class tools.HydrogenAdder.
+     *
+     *@param  atom              The IAtom for which the DescriptorValue is requested
+     *@param  ac                AtomContainer
+     *@return                   return the effective polarizability
+     */
+public DescriptorValue calculate(IAtom atom, IAtomContainer ac){
+    double polarizability;
+    try {
+        String originalAtomtypeName = atom.getAtomTypeName();
+        Integer originalNeighborCount = atom.getFormalNeighbourCount();
+        Integer originalHCount = atom.getImplicitHydrogenCount();
+        Integer originalValency = atom.getValency();
+        IAtomType.Hybridization originalHybridization = atom.getHybridization();
+        boolean originalFlag = atom.getFlag(CDKConstants.VISITED);
+        Double originalBondOrderSum = atom.getBondOrderSum();
+        Order originalMaxBondOrder = atom.getMaxBondOrder();
+        polarizability = pol.calculateGHEffectiveAtomPolarizability(ac, atom, 100, true);
+        atom.setAtomTypeName(originalAtomtypeName);
+        atom.setFormalNeighbourCount(originalNeighborCount);
+        atom.setValency(originalValency);
+        atom.setImplicitHydrogenCount(originalHCount);
+        atom.setFlag(CDKConstants.VISITED, originalFlag);
+        atom.setHybridization(originalHybridization);
+        atom.setMaxBondOrder(originalMaxBondOrder);
+        atom.setBondOrderSum(originalBondOrderSum);
+        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(), new DoubleResult(polarizability), getDescriptorNames());
+    } catch (Exception ex1) {
+        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(), new DoubleResult(Double.NaN), getDescriptorNames(), ex1);
+    }
+}","public DescriptorValue calculate(IAtom atom, IAtomContainer ac){
+    double polarizability;
+    try {
+        String originalAtomtypeName = atom.getAtomTypeName();
+        Integer originalNeighborCount = atom.getFormalNeighbourCount();
+        Integer originalHCount = atom.getImplicitHydrogenCount();
+        Integer originalValency = atom.getValency();
+        IAtomType.Hybridization originalHybridization = atom.getHybridization();
+        boolean originalFlag = atom.getFlag(CDKConstants.VISITED);
+        Double originalBondOrderSum = atom.getBondOrderSum();
+        Order originalMaxBondOrder = atom.getMaxBondOrder();
+        polarizability = pol.calculateGHEffectiveAtomPolarizability(ac, atom, 100, true);
+        atom.setAtomTypeName(originalAtomtypeName);
+        atom.setFormalNeighbourCount(originalNeighborCount);
+        atom.setValency(originalValency);
+        atom.setImplicitHydrogenCount(originalHCount);
+        atom.setFlag(CDKConstants.VISITED, originalFlag);
+        atom.setHybridization(originalHybridization);
+        atom.setMaxBondOrder(originalMaxBondOrder);
+        atom.setBondOrderSum(originalBondOrderSum);
+        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(), new DoubleResult(polarizability), getDescriptorNames());
+    } catch (Exception ex1) {
+        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(), new DoubleResult(Double.NaN), getDescriptorNames(), ex1);
+    }
+}","/**
+     *  The method calculates the Effective Atom Polarizability of a given atom
+     *  It is needed to call the addExplicitHydrogensToSatisfyValency method from the class tools.HydrogenAdder.
+     *
+     *@param  atom              The IAtom for which the DescriptorValue is requested
+     *@param  ac                AtomContainer
+     *@return                   return the effective polarizability
+     */","('calculate', {'INSTRUCTION': {'covered': 74, 'missed': 18}, 'LINE': {'covered': 19, 'missed': 3}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",235.0,  The method calculates the Effective Atom Polarizability of a given atom  It is needed to call the addExplicitHydrogensToSatisfyValency method from the class tools.,24.0,"Return a new DescriptorValue using the specification, the parameter names, the parameters, and the result of the given atom."," public DescriptorValue calculate(IAtom atom, IAtomContainer ac){
+        double result = pol.getEffectivePolarizability(atom);
+        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(), new DoubleResult(result));         
+ }",NOT PASS
+210,shardingsphere-elasticjob,org/apache/shardingsphere/elasticjob/lite/internal/guarantee/GuaranteeService.java,/elasticjob-lite/elasticjob-lite-core/src/main/java/org/apache/shardingsphere/elasticjob/lite/internal/guarantee/GuaranteeService.java,isRegisterStartSuccess,51-64,"/**
+     * Judge whether current sharding items are all register start success.
+     *
+     * @param shardingItems current sharding items
+     * @return current sharding items are all start success or not
+     */
+public boolean isRegisterStartSuccess(final Collection<Integer> shardingItems){
+    for (int each : shardingItems) {
+        if (!jobNodeStorage.isJobNodeExisted(GuaranteeNode.getStartedNode(each))) {
+            return false;
+        }
+    }
+    return true;
+}","public boolean isRegisterStartSuccess(final Collection<Integer> shardingItems){
+    for (int each : shardingItems) {
+        if (!jobNodeStorage.isJobNodeExisted(GuaranteeNode.getStartedNode(each))) {
+            return false;
+        }
+    }
+    return true;
+}","/**
+     * Judge whether current sharding items are all register start success.
+     *
+     * @param shardingItems current sharding items
+     * @return current sharding items are all start success or not
+     */","('isRegisterStartSuccess', {'INSTRUCTION': {'covered': 22, 'missed': 0}, 'BRANCH': {'covered': 4, 'missed': 0}, 'LINE': {'covered': 5, 'missed': 0}, 'COMPLEXITY': {'covered': 3, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",45.0,  Judge whether current sharding items are all register start success.,11.0,"Return true if each element of shardingItems exist as jobNodeStorage. False, otherwise."," public boolean isRegisterStartSuccess(final Collection<Integer> shardingItems){
+        for (int each : shardingItems) {
+            if (!jobNodeStorage.isJobNodeExisted(GuaranteeNode.getStartedNode(each))) {
+                return false;
+            }
+        }
+        return true;
+    }",PASS
+888,matsim-libs,org/matsim/core/config/groups/PlanCalcScoreConfigGroup.java,/matsim/src/main/java/org/matsim/core/config/groups/PlanCalcScoreConfigGroup.java,checkConsistency,1510-1561,"/**
+		 * Checks whether all the settings make sense or if there are some
+		 * problems with the parameters currently set. Currently, this checks
+		 * that for at least one activity type opening AND closing times are
+		 * defined.
+		 */
+public void checkConsistency(Config config){
+    super.checkConsistency(config);
+    boolean hasOpeningAndClosingTime = false;
+    boolean hasOpeningTimeAndLatePenalty = false;
+    for (ActivityParams actType : this.getActivityParams()) {
+        if (actType.isScoringThisActivityAtAll()) {
+            if (actType.getOpeningTime().isDefined() && actType.getClosingTime().isDefined()) {
+                hasOpeningAndClosingTime = true;
+                if (actType.getOpeningTime().seconds() == 0. && actType.getClosingTime().seconds() > 24. * 3600 - 1) {
+                    log.error(""it looks like you have an activity type with opening time set to 0:00 and closing "" + ""time set to 24:00. This is most probably not the same as not setting them at all.  "" + ""In particular, activities which extend past midnight may not accumulate scores."");
+                }
+            }
+            if (actType.getOpeningTime().isDefined() && (getLateArrival_utils_hr() < -0.001)) {
+                hasOpeningTimeAndLatePenalty = true;
+            }
+        }
+    }
+    if (!hasOpeningAndClosingTime && !hasOpeningTimeAndLatePenalty) {
+        log.info(""NO OPENING OR CLOSING TIMES DEFINED!\n\n"" + ""There is no activity type that has an opening *and* closing time (or opening time and late penalty) defined.\n"" + ""This usually means that the activity chains can be shifted by an arbitrary\n"" + ""number of hours without having an effect on the score of the plans, and thus\n"" + ""resulting in wrong results / traffic patterns.\n"" + ""If you are using MATSim without time adaptation, you can ignore this warning.\n\n"");
+    }
+    if (this.getMarginalUtlOfWaiting_utils_hr() != 0.0) {
+        log.warn(""marginal utl of wait set to: "" + this.getMarginalUtlOfWaiting_utils_hr() + "". Setting this different from zero is "" + ""discouraged since there is already the marginal utility of time as a resource. The parameter was also used "" + ""in the past for pt routing; if you did that, consider setting the new "" + ""parameter waitingPt instead."");
+    }
+}","public void checkConsistency(Config config){
+    super.checkConsistency(config);
+    boolean hasOpeningAndClosingTime = false;
+    boolean hasOpeningTimeAndLatePenalty = false;
+    for (ActivityParams actType : this.getActivityParams()) {
+        if (actType.isScoringThisActivityAtAll()) {
+            if (actType.getOpeningTime().isDefined() && actType.getClosingTime().isDefined()) {
+                hasOpeningAndClosingTime = true;
+                if (actType.getOpeningTime().seconds() == 0. && actType.getClosingTime().seconds() > 24. * 3600 - 1) {
+                    log.error(""it looks like you have an activity type with opening time set to 0:00 and closing "" + ""time set to 24:00. This is most probably not the same as not setting them at all.  "" + ""In particular, activities which extend past midnight may not accumulate scores."");
+                }
+            }
+            if (actType.getOpeningTime().isDefined() && (getLateArrival_utils_hr() < -0.001)) {
+                hasOpeningTimeAndLatePenalty = true;
+            }
+        }
+    }
+    if (!hasOpeningAndClosingTime && !hasOpeningTimeAndLatePenalty) {
+        log.info(""NO OPENING OR CLOSING TIMES DEFINED!\n\n"" + ""There is no activity type that has an opening *and* closing time (or opening time and late penalty) defined.\n"" + ""This usually means that the activity chains can be shifted by an arbitrary\n"" + ""number of hours without having an effect on the score of the plans, and thus\n"" + ""resulting in wrong results / traffic patterns.\n"" + ""If you are using MATSim without time adaptation, you can ignore this warning.\n\n"");
+    }
+    if (this.getMarginalUtlOfWaiting_utils_hr() != 0.0) {
+        log.warn(""marginal utl of wait set to: "" + this.getMarginalUtlOfWaiting_utils_hr() + "". Setting this different from zero is "" + ""discouraged since there is already the marginal utility of time as a resource. The parameter was also used "" + ""in the past for pt routing; if you did that, consider setting the new "" + ""parameter waitingPt instead."");
+    }
+}","/**
+		 * Checks whether all the settings make sense or if there are some
+		 * problems with the parameters currently set. Currently, this checks
+		 * that for at least one activity type opening AND closing times are
+		 * defined.
+		 */","('checkConsistency', {'INSTRUCTION': {'covered': 90, 'missed': 12}, 'BRANCH': {'covered': 18, 'missed': 2}, 'LINE': {'covered': 17, 'missed': 2}, 'COMPLEXITY': {'covered': 9, 'missed': 2}, 'METHOD': {'covered': 1, 'missed': 0}})",207.0,  Checks whether all the settings make sense or if there are some  problems with the parameters currently set.,19.0,"Given a Config object as input, check its consistency."," public void checkConsistency(Config config){
+	  		// check that all modes are defined
+ 		for (String mode : config.getModes().keySet()) {
+ 			if (this.getModes().get(mode) == null) {
+ 				throw new RuntimeException(""mode "" + mode + "" is not defined in the config."");
+ 			}
+ 		}
+ 
+ 		// check that all activity types are defined
+ 		for (String actType : config.getActivityParamsPerType().keySet()) {
+ 			if (this.getActivityParamsPerType().get(actType) == null) {
+ 				throw new RuntimeException(""activity type "" + actType + "" is not defined in the config."");
+ 			}
+ 		}
+ 
+ 		// check that all activity types are defined
+ 		for (String actType : config.getActivityParamsPerType().keySet()) {
+ 			if (this.getActivityParamsPerType().get(actType) == null) {
+ 				throw new RuntimeException(""activity type "" + actType + "" is not defined in the config."");
+ 			}
+ 		}
+ 
+ 		// check that all activity types are defined
+ 		for (String actType : config.getActivityParamsPerType().keySet()) {
+ 			if (this.getActivityParamsPerType().get(actType) == null) {
+ 				throw new RuntimeException(""activity type "" + actType + "" is not defined in the config."");
+ 			}
+ 		}
+ 
+ 		// check that all activity types are defined
+ 		for (String actType : config.getActivityParamsPerType().keySet()) {
+ 			if (this.getActivityParamsPerType().get(actType) == null) {
+ 				throw new RuntimeException(""activity type "" + actType + "" is not defined in the config."");
+ 			}
+ 		}
+ 
+ 		// check that all activity types are		
+ }",NOT PASS
+646,cdk,org/openscience/cdk/geometry/cip/CIPTool.java,/descriptor/cip/src/main/java/org/openscience/cdk/geometry/cip/CIPTool.java,defineLigancyFourChirality,280-305,"/**
+     * Creates a ligancy for chirality around a single chiral atom, where the involved
+     * atoms are identified by there index in the {@link IAtomContainer}. For the four ligand
+     * atoms, {@link #HYDROGEN} can be passed as index, which will indicate the presence of
+     * an implicit hydrogen, not explicitly present in the chemical graph of the
+     * given <code>container</code>.
+     *
+     * @param container  {@link IAtomContainer} for which the returned {@link ILigand}s are defined
+     * @param chiralAtom int pointing to the {@link IAtom} index of the chiral atom
+     * @param ligand1    int pointing to the {@link IAtom} index of the first {@link ILigand}
+     * @param ligand2    int pointing to the {@link IAtom} index of the second {@link ILigand}
+     * @param ligand3    int pointing to the {@link IAtom} index of the third {@link ILigand}
+     * @param ligand4    int pointing to the {@link IAtom} index of the fourth {@link ILigand}
+     * @param stereo     {@link Stereo} for the chirality
+     * @return           the created {@link LigancyFourChirality}
+     */
+public static LigancyFourChirality defineLigancyFourChirality(IAtomContainer container, int chiralAtom, int ligand1, int ligand2, int ligand3, int ligand4, Stereo stereo){
+    int[] atomIndices = { ligand1, ligand2, ligand3, ligand4 };
+    VisitedAtoms visitedAtoms = new VisitedAtoms();
+    ILigand[] ligands = new ILigand[4];
+    for (int i = 0; i < 4; i++) {
+        ligands[i] = defineLigand(container, visitedAtoms, chiralAtom, atomIndices[i]);
+    }
+    return new LigancyFourChirality(container.getAtom(chiralAtom), ligands, stereo);
+}","public static LigancyFourChirality defineLigancyFourChirality(IAtomContainer container, int chiralAtom, int ligand1, int ligand2, int ligand3, int ligand4, Stereo stereo){
+    int[] atomIndices = { ligand1, ligand2, ligand3, ligand4 };
+    VisitedAtoms visitedAtoms = new VisitedAtoms();
+    ILigand[] ligands = new ILigand[4];
+    for (int i = 0; i < 4; i++) {
+        ligands[i] = defineLigand(container, visitedAtoms, chiralAtom, atomIndices[i]);
+    }
+    return new LigancyFourChirality(container.getAtom(chiralAtom), ligands, stereo);
+}","/**
+     * Creates a ligancy for chirality around a single chiral atom, where the involved
+     * atoms are identified by there index in the {@link IAtomContainer}. For the four ligand
+     * atoms, {@link #HYDROGEN} can be passed as index, which will indicate the presence of
+     * an implicit hydrogen, not explicitly present in the chemical graph of the
+     * given <code>container</code>.
+     *
+     * @param container  {@link IAtomContainer} for which the returned {@link ILigand}s are defined
+     * @param chiralAtom int pointing to the {@link IAtom} index of the chiral atom
+     * @param ligand1    int pointing to the {@link IAtom} index of the first {@link ILigand}
+     * @param ligand2    int pointing to the {@link IAtom} index of the second {@link ILigand}
+     * @param ligand3    int pointing to the {@link IAtom} index of the third {@link ILigand}
+     * @param ligand4    int pointing to the {@link IAtom} index of the fourth {@link ILigand}
+     * @param stereo     {@link Stereo} for the chirality
+     * @return           the created {@link LigancyFourChirality}
+     */","('defineLigancyFourChirality', {'INSTRUCTION': {'covered': 52, 'missed': 0}, 'BRANCH': {'covered': 2, 'missed': 0}, 'LINE': {'covered': 6, 'missed': 0}, 'COMPLEXITY': {'covered': 2, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",113.0,"  Creates a ligancy for chirality around a single chiral atom, where the involved  atoms are identified by there index in the {@link IAtomContainer}.",28.0,Return a new LigancyFourChirality object.," public static LigancyFourChirality defineLigancyFourChirality(IAtomContainer container, int chiralAtom, int ligand1, int ligand2, int ligand3, int ligand4, Stereo stereo){
+        LigancyFourChirality ligancyFourChirality = new LigancyFourChirality(container, chiralAtom, ligand1, ligand2, ligand3, ligand4, stereo);
+        return ligancyFourChirality;            
+ }",NOT PASS
+114,openapi-generator,org/openapitools/codegen/templating/HandlebarsEngineAdapter.java,/modules/openapi-generator/src/main/java/org/openapitools/codegen/templating/HandlebarsEngineAdapter.java,handlesFile,119-129,"/**
+     * Determine if the adapter handles compilation of the file
+     *
+     * @param filename The template filename
+     * @return True if the file should be compiled by this adapter, else false.
+     */
+public boolean handlesFile(String filename){
+    return Arrays.stream(canCompileFromExtensions).anyMatch(suffix -> !suffix.equalsIgnoreCase(filename) && filename.endsWith(suffix));
+}","public boolean handlesFile(String filename){
+    return Arrays.stream(canCompileFromExtensions).anyMatch(suffix -> !suffix.equalsIgnoreCase(filename) && filename.endsWith(suffix));
+}","/**
+     * Determine if the adapter handles compilation of the file
+     *
+     * @param filename The template filename
+     * @return True if the file should be compiled by this adapter, else false.
+     */","('handlesFile', {'INSTRUCTION': {'covered': 7, 'missed': 0}, 'LINE': {'covered': 1, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",37.0,"  Determine if the adapter handles compilation of the file   @param filename The template filename  @return True if the file should be compiled by this adapter, else false.",31.0,"Return a stream array if for any match, the filename given as input ends with the specific suffix."," public boolean handlesFile(String filename){
+        return Arrays.stream(canCompileFromExtensions).anyMatch(filename::endsWith);
+    }",NOT PASS
+805,twilio-java,com/twilio/jwt/validation/RequestCanonicalizer.java,/src/main/java/com/twilio/jwt/validation/RequestCanonicalizer.java,replace,168-201,"/**
+     * Replaces the special characters in the URLEncoded string with the replacement values defined by the spec.
+     *
+     * Partially copied from https://github.com/aws/aws-sdk-java: com.amazonaws.util.SdkHttpUtils (2017-05-19)
+     *
+     * @param string       the string to replace characters in
+     * @param replaceSlash whether the encoded '/' should be replaced
+     * @return the string after replacements
+     */
+private static String replace(String string, boolean replaceSlash){
+    if (string == null || string.isEmpty()) {
+        return string;
+    }
+    StringBuffer buffer = new StringBuffer(string.length());
+    Matcher matcher = TOKEN_REPLACE_PATTERN.matcher(string);
+    while (matcher.find()) {
+        String replacement = matcher.group(0);
+        if (""+"".equals(replacement)) {
+            replacement = ""%20"";
+        } else if (""*"".equals(replacement)) {
+            replacement = ""%2A"";
+        } else if (""%7E"".equals(replacement)) {
+            replacement = ""~"";
+        } else if (replaceSlash && ""%2F"".equals(replacement)) {
+            replacement = ""/"";
+        }
+        matcher.appendReplacement(buffer, replacement);
+    }
+    matcher.appendTail(buffer);
+    return buffer.toString();
+}","private static String replace(String string, boolean replaceSlash){
+    if (string == null || string.isEmpty()) {
+        return string;
+    }
+    StringBuffer buffer = new StringBuffer(string.length());
+    Matcher matcher = TOKEN_REPLACE_PATTERN.matcher(string);
+    while (matcher.find()) {
+        String replacement = matcher.group(0);
+        if (""+"".equals(replacement)) {
+            replacement = ""%20"";
+        } else if (""*"".equals(replacement)) {
+            replacement = ""%2A"";
+        } else if (""%7E"".equals(replacement)) {
+            replacement = ""~"";
+        } else if (replaceSlash && ""%2F"".equals(replacement)) {
+            replacement = ""/"";
+        }
+        matcher.appendReplacement(buffer, replacement);
+    }
+    matcher.appendTail(buffer);
+    return buffer.toString();
+}","/**
+     * Replaces the special characters in the URLEncoded string with the replacement values defined by the spec.
+     *
+     * Partially copied from https://github.com/aws/aws-sdk-java: com.amazonaws.util.SdkHttpUtils (2017-05-19)
+     *
+     * @param string       the string to replace characters in
+     * @param replaceSlash whether the encoded '/' should be replaced
+     * @return the string after replacements
+     */","('replace', {'INSTRUCTION': {'covered': 66, 'missed': 0}, 'BRANCH': {'covered': 14, 'missed': 2}, 'LINE': {'covered': 18, 'missed': 0}, 'COMPLEXITY': {'covered': 7, 'missed': 2}, 'METHOD': {'covered': 1, 'missed': 0}})",161.0,  Replaces the special characters in the URLEncoded string with the replacement values defined by the spec.,17.0,"Given a String object and a boolean as input, return the string object if the former is null or empty. Otherwise, create a new StringBuffer object replacing the character with satisfying the matching criteria.",Not Valid,Not Valid
+863,acs-aem-commons,com/adobe/acs/commons/ondeploy/scripts/OnDeployScriptBase.java,/bundle/src/main/java/com/adobe/acs/commons/ondeploy/scripts/OnDeployScriptBase.java,searchAndUpdateResourceType,182-213,"/**
+     * Searches for the current sling:resourceType under /content and replaces any nodes it finds
+     * with the newResourceType.
+     *
+     * @param oldResourceType The current sling:resourceType.
+     * @param newResourceType The new sling:resourceType to be used.
+     */
+protected final void searchAndUpdateResourceType(String oldResourceType, String newResourceType) throws RepositoryException{
+    Map<String, String> map = new HashMap<>();
+    map.put(""p.limit"", ""-1"");
+    map.put(""path"", ""/content"");
+    map.put(""1_property"", SLING_RESOURCE_TYPE);
+    map.put(""1_property.value"", oldResourceType);
+    logger.info(""Finding all nodes under /content with resource type: {}"", oldResourceType);
+    final QueryBuilder queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
+    if (queryBuilder != null) {
+        Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
+        QueryUtil.setResourceResolverOn(resourceResolver, query);
+        SearchResult result = query.getResult();
+        Iterator<Node> nodeItr = result.getNodes();
+        if (nodeItr.hasNext()) {
+            while (nodeItr.hasNext()) {
+                Node node = nodeItr.next();
+                updateResourceType(node, newResourceType);
+            }
+        } else {
+            logger.info(""No nodes found with resource type: {}"", oldResourceType);
+        }
+    }
+}","protected final void searchAndUpdateResourceType(String oldResourceType, String newResourceType) throws RepositoryException{
+    Map<String, String> map = new HashMap<>();
+    map.put(""p.limit"", ""-1"");
+    map.put(""path"", ""/content"");
+    map.put(""1_property"", SLING_RESOURCE_TYPE);
+    map.put(""1_property.value"", oldResourceType);
+    logger.info(""Finding all nodes under /content with resource type: {}"", oldResourceType);
+    final QueryBuilder queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
+    if (queryBuilder != null) {
+        Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
+        QueryUtil.setResourceResolverOn(resourceResolver, query);
+        SearchResult result = query.getResult();
+        Iterator<Node> nodeItr = result.getNodes();
+        if (nodeItr.hasNext()) {
+            while (nodeItr.hasNext()) {
+                Node node = nodeItr.next();
+                updateResourceType(node, newResourceType);
+            }
+        } else {
+            logger.info(""No nodes found with resource type: {}"", oldResourceType);
+        }
+    }
+}","/**
+     * Searches for the current sling:resourceType under /content and replaces any nodes it finds
+     * with the newResourceType.
+     *
+     * @param oldResourceType The current sling:resourceType.
+     * @param newResourceType The new sling:resourceType to be used.
+     */","('searchAndUpdateResourceType', {'INSTRUCTION': {'covered': 75, 'missed': 0}, 'BRANCH': {'covered': 5, 'missed': 1}, 'LINE': {'covered': 19, 'missed': 0}, 'COMPLEXITY': {'covered': 3, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",191.0,  Searches for the current sling:resourceType under /content and replaces any nodes it finds  with the newResourceType.,19.0,Update the resource type with the newResourceType String that has been given as input if the QueryBuilder object can be successfully created.," protected final void searchAndUpdateResourceType(String oldResourceType, String newResourceType) throws RepositoryException{
+        QueryBuilder queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
+        if (queryBuilder != null) {
+            String query = ""SELECT * FROM [sling:resourceType] WHERE [sling:resourceType] = '"" + oldResourceType + ""'"";
+            QueryResult queryResult = queryBuilder.createQuery(query, Query.JCR_SQL2).getResult();
+            NodeIterator nodeIterator = queryResult.getNodes();
+            while (nodeIterator.hasNext()) {
+                Node node = nodeIterator.nextNode();
+                node.setProperty(SLING_RESOURCE_TYPE, newResourceType);
+            }
+        }           
+ }",NOT PASS
+331,matsim-libs,org/matsim/contrib/analysis/spatial/SpatialInterpolation.java,/contribs/analysis/src/main/java/org/matsim/contrib/analysis/spatial/SpatialInterpolation.java,calculateWeightFromPoint,41-57,"/**
+     * This uses an exponential distance weighting to calculate the impact of point based emissions onto the centroid of
+     * a grid cell. The calculation is described in Kickhoefer's PhD thesis https://depositonce.tu-berlin.de/handle/11303/4386
+     * in Appendix A.2
+     *
+     * @param emissionSource Centroid of the link
+     * @param cellCentroid   Centroid of the impacted cell
+     * @return weight factor by which the emission value should be multiplied to calculate the impact of the cell
+     */
+public static double calculateWeightFromPoint(final Coordinate emissionSource, final Coordinate cellCentroid, double smoothingRadius){
+    if (smoothingRadius <= 0)
+        throw new IllegalArgumentException(""smoothing radius must be greater 0"");
+    double dist = emissionSource.distance(cellCentroid);
+    return Math.exp((-dist * dist) / (smoothingRadius * smoothingRadius));
+}","public static double calculateWeightFromPoint(final Coordinate emissionSource, final Coordinate cellCentroid, double smoothingRadius){
+    if (smoothingRadius <= 0)
+        throw new IllegalArgumentException(""smoothing radius must be greater 0"");
+    double dist = emissionSource.distance(cellCentroid);
+    return Math.exp((-dist * dist) / (smoothingRadius * smoothingRadius));
+}","/**
+     * This uses an exponential distance weighting to calculate the impact of point based emissions onto the centroid of
+     * a grid cell. The calculation is described in Kickhoefer's PhD thesis https://depositonce.tu-berlin.de/handle/11303/4386
+     * in Appendix A.2
+     *
+     * @param emissionSource Centroid of the link
+     * @param cellCentroid   Centroid of the impacted cell
+     * @return weight factor by which the emission value should be multiplied to calculate the impact of the cell
+     */","('calculateWeightFromPoint', {'INSTRUCTION': {'covered': 23, 'missed': 0}, 'BRANCH': {'covered': 2, 'missed': 0}, 'LINE': {'covered': 4, 'missed': 0}, 'COMPLEXITY': {'covered': 2, 'missed': 0}, 'METHOD': {'covered': 1, 'missed': 0}})",60.0,  This uses an exponential distance weighting to calculate the impact of point based emissions onto the centroid of  a grid cell.,22.0,"First, check if the parameter smoothingRadiuns that has been given as input has a smoothingRadius smaller or equal to 0. If so, proceed and compute the weight from the points given as input.",Empty Method,Empty Method
+318,dcache,org/dcache/services/billing/text/BillingParserBuilder.java,/modules/dcache/src/main/java/org/dcache/services/billing/text/BillingParserBuilder.java,toGroupName,252-261,"/**
+     * Translates a attribute name into a name suitable for a named capturing group.
+     */
+private static String toGroupName(String attribute){
+    int pos = attribute.indexOf(';');
+    if (pos > -1) {
+        attribute = attribute.substring(0, pos);
+    }
+    return attribute.replace(""X"", ""XX"").replace(""."", ""X"");
+}","private static String toGroupName(String attribute){
+    int pos = attribute.indexOf(';');
+    if (pos > -1) {
+        attribute = attribute.substring(0, pos);
+    }
+    return attribute.replace(""X"", ""XX"").replace(""."", ""X"");
+}","/**
+     * Translates a attribute name into a name suitable for a named capturing group.
+     */","('toGroupName', {'INSTRUCTION': {'covered': 15, 'missed': 5}, 'BRANCH': {'covered': 1, 'missed': 1}, 'LINE': {'covered': 3, 'missed': 1}, 'COMPLEXITY': {'covered': 1, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",57.0,  Translates a attribute name into a name suitable for a named capturing group.,14.0,"Given a String object as input, first get the position of the character "";"" then if does exists in the String object, replace ""X"" with ""XX"" and ""."" with “X"". Finally return the modified object."," private static String toGroupName(String attribute){
+        int index = attribute.indexOf("";"");
+        if(index != -1){
+            attribute = attribute.replace(""X"", ""XX"");
+            attribute = attribute.replace(""."", ""X"");
+        }
+        return attribute;
+    }",NOT PASS
+238,cdk,org/openscience/cdk/qsar/descriptors/atomic/IPAtomicHOSEDescriptor.java,/descriptor/qsaratomic/src/main/java/org/openscience/cdk/qsar/descriptors/atomic/IPAtomicHOSEDescriptor.java,familyHalogen,162-171,"/**
+     * Looking if the Atom belongs to the halogen family.
+     *
+     * @param  atom  The IAtom
+     * @return       True, if it belongs
+     */
+private boolean familyHalogen(IAtom atom){
+    String symbol = atom.getSymbol();
+    return symbol.equals(""F"") || symbol.equals(""Cl"") || symbol.equals(""Br"") || symbol.equals(""I"");
+}","private boolean familyHalogen(IAtom atom){
+    String symbol = atom.getSymbol();
+    return symbol.equals(""F"") || symbol.equals(""Cl"") || symbol.equals(""Br"") || symbol.equals(""I"");
+}","/**
+     * Looking if the Atom belongs to the halogen family.
+     *
+     * @param  atom  The IAtom
+     * @return       True, if it belongs
+     */","('familyHalogen', {'INSTRUCTION': {'covered': 22, 'missed': 1}, 'BRANCH': {'covered': 6, 'missed': 2}, 'LINE': {'covered': 2, 'missed': 0}, 'COMPLEXITY': {'covered': 3, 'missed': 2}, 'METHOD': {'covered': 1, 'missed': 0}})",47.0,  Looking if the Atom belongs to the halogen family.,10.0,"Given an IAtom object as input, first get its symbol and the return true if the symbol matches one of the following: ""F"" ""Cl"" ""Br"" “I"". False, otherwise."," private boolean familyHalogen(IAtom atom){
+        String symbol = atom.getSymbol();
+        if (symbol.equals(""F"") || symbol.equals(""Cl"") || symbol.equals(""Br"") || symbol.equals(""I""))
+            return true;
+        else
+            return false;           
+ }",PASS
+177,jeromq,org/zeromq/ZCertStore.java,/src/main/java/org/zeromq/ZCertStore.java,containsPublicKey,174-184,"/**
+     * Check if a public key is in the certificate store.
+     * @param publicKey needs to be a 32 byte array representing the public key
+     */
+public boolean containsPublicKey(byte[] publicKey){
+    Utils.checkArgument(publicKey.length == 32, ""publickey needs to have a size of 32 bytes. got only "" + publicKey.length);
+    return containsPublicKey(ZMQ.Curve.z85Encode(publicKey));
+}","public boolean containsPublicKey(byte[] publicKey){
+    Utils.checkArgument(publicKey.length == 32, ""publickey needs to have a size of 32 bytes. got only "" + publicKey.length);
+    return containsPublicKey(ZMQ.Curve.z85Encode(publicKey));
+}","/**
+     * Check if a public key is in the certificate store.
+     * @param publicKey needs to be a 32 byte array representing the public key
+     */","('containsPublicKey', {'INSTRUCTION': {'covered': 24, 'missed': 1}, 'BRANCH': {'covered': 1, 'missed': 1}, 'LINE': {'covered': 5, 'missed': 0}, 'COMPLEXITY': {'covered': 1, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",41.0,  Check if a public key is in the certificate store.,11.0,"First, check if the public-key length given as input is 32 bytes. Then, recursively call the method encoding the public-key using the ZMQ.Curve.z85Encode method."," public boolean containsPublicKey(byte[] publicKey){
+        if (publicKey.length != 32) {
+            return false;
+        }
+        String encodedPublicKey = ZMQ.Curve.z85Encode(publicKey);
+        return publicKeys.containsKey(encodedPublicKey);            
+ }",NOT PASS
+191,jackson-databind,com/fasterxml/jackson/databind/util/ClassUtil.java,/src/main/java/com/fasterxml/jackson/databind/util/ClassUtil.java,isRecordType,286-294,"/**
+     * Helper method for detecting Java14-added new {@code Record} types
+     *
+     * @since 2.12
+     */
+public static boolean isRecordType(Class<?> cls){
+    Class<?> parent = cls.getSuperclass();
+    return (parent != null) && ""java.lang.Record"".equals(parent.getName());
+}","public static boolean isRecordType(Class<?> cls){
+    Class<?> parent = cls.getSuperclass();
+    return (parent != null) && ""java.lang.Record"".equals(parent.getName());
+}","/**
+     * Helper method for detecting Java14-added new {@code Record} types
+     *
+     * @since 2.12
+     */","('isRecordType', {'INSTRUCTION': {'covered': 12, 'missed': 2}, 'BRANCH': {'covered': 3, 'missed': 1}, 'LINE': {'covered': 2, 'missed': 0}, 'COMPLEXITY': {'covered': 2, 'missed': 1}, 'METHOD': {'covered': 1, 'missed': 0}})",43.0,Helper method for detecting Java14-added new {@code Record} types   @since 2.,16.0,"Return true if the parent super class is not null and the parent class name is ""java.lang.Record""."," public static boolean isRecordType(Class<?> cls){
+        if(cls == null) return false;
+        if(cls.getSuperclass() == null) return false;
+        if(cls.getSuperclass().getName().equals(""java.lang.Record"")) return true;
+        return isRecordType(cls.getSuperclass());
+    }",PASS
