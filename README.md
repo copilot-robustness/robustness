@@ -5,7 +5,7 @@ In this regard, the study has been conducted targeting java as programming langu
 
 ----------------
 
-###The repo is organized as follow:
+### The repo is organized as follow:
 
 * The folder <a href="https://github.com/copilot-robustness/robustness/tree/main/Code">Code</a> contains two subfolder, <a href="https://github.com/copilot-robustness/robustness/tree/main/Code/pre-processing">pre-processing</a> and <a href="https://github.com/copilot-robustness/robustness/tree/main/Code/post-processing">post-processing</a>
   <br>
