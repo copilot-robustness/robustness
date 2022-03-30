@@ -18,7 +18,11 @@ In this regard, the study has been conducted targeting java as programming langu
 <br>
 
 * The folder <a href="https://github.com/copilot-robustness/robustness/tree/main/Results"> Results </a> contains two subfolder, <a href="https://github.com/copilot-robustness/robustness/tree/main/Results/Full-Context">Full-Context</a> and <a href="https://github.com/copilot-robustness/robustness/tree/main/Results/Non-Full-Context">Non-Full-Context</a> in which we share the results of the experiments including the generated java instances, namely *Original, Perturbed1, Perturbed2, and Perturbed3*
-* Note that we also make available the Apple Scripts we used to run Copilot on our dataset automatically. Specifically, we created one script for each instance, meaning that we have more than 8K apple scripts collected and stored within the relative index folder.       
+* Note that we also make available the Apple Scripts we used to run Copilot on our dataset automatically. Specifically, we created one script for each instance, meaning that we have more than 8K apple scripts collected and stored within the relative index folder.
+
+
+* You can also find the results concerning the manual analysis we performed to assess the quality of the perturbed descriptions at the following link. Take a look by yourself :) https://docs.google.com/spreadsheets/d/15Sak8KGmmVhyOyYLsEgbjmRfhtoqIdSb/edit?usp=sharing&ouid=111445973543299957527&rtpof=true&sd=true
+
 
 
 ----------------
