@@ -17,7 +17,8 @@ In this regard, the study has been conducted targeting java as programming langu
 * The folder <a href="https://github.com/copilot-robustness/robustness/tree/main/Dataset">Dataset</a> contains the dataset we built and we used to run the experiment.
 <br>
 
-* The folder <a href="https://github.com/copilot-robustness/robustness/tree/main/Results"> Results </a> contains two subfolder, <a href="https://github.com/copilot-robustness/robustness/tree/main/Results/Full-Context">Full-Context</a> and <a href="https://github.com/copilot-robustness/robustness/tree/main/Results/Non-Full-Context">Non-Full-Context</a> in which we share the results of the experiments including the generated java instances, namely *Original, Perturbated1, Perturbated2, and Perturbated3*
+* The folder <a href="https://github.com/copilot-robustness/robustness/tree/main/Results"> Results </a> contains two subfolder, <a href="https://github.com/copilot-robustness/robustness/tree/main/Results/Full-Context">Full-Context</a> and <a href="https://github.com/copilot-robustness/robustness/tree/main/Results/Non-Full-Context">Non-Full-Context</a> in which we share the results of the experiments including the generated java instances, namely *Original, Perturbed1, Perturbed2, and Perturbed3*
+* Note that we also make available the Apple Scripts we used to run Copilot on our dataset automatically. Specifically, we created one script for each instance, meaning that we have more than 8K apple scripts collected and stored within the relative index folder.       
 
 
 ----------------
