@@ -1,6 +1,0 @@
-Non-Full-Context with empty,PASS,NOT-PASS,EMPTY,Syntax Error,Heuristic Failed to extract the method,TIMEOUT,
-Manual,11,30,4,1,4,0,50
-Original,10,29,3,4,4,0,50
-P0,8,31,4,4,3,0,50
-P1,9,32,2,3,4,0,50
-P2,7,31,4,5,3,0,50
