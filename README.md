@@ -21,13 +21,15 @@ In this regard, the study has been conducted targeting java as programming langu
 * Note that we also make available the Apple Scripts we used to run Copilot on our dataset automatically. Specifically, we created one script for each instance, meaning that we have more than 5K apple scripts collected and stored within the relative index folder.
 
 
-* You can also find the results concerning the manual analysis we performed to assess the equivalence of the paraphrased descriptions at the following link. Take a look by yourself :) https://docs.google.com/spreadsheets/d/15Sak8KGmmVhyOyYLsEgbjmRfhtoqIdSb/edit?usp=sharing&ouid=111445973543299957527&rtpof=true&sd=true
+* You can also find the results concerning the manual analysis we performed to assess the equivalence of the automatically generated paraphrased descriptions:
+    - <a href="https://drive.google.com/file/d/1S74eIsNo_s9ADoOz7Fbz4wtnLwKNcWYh/view?usp=sharing">Pegasus</a>
+    - <a href="https://drive.google.com/file/d/1HGCB8YHfw9Wb147xWZ2DVnLtVvm-s1nl/view?usp=sharing">Translation-Pivoting</a>
 
 
 
 ----------------
 
-Finally, we also release the maven projects (RAW DATA) that have been used in this study here: <a href="https://drive.google.com/drive/folders/1oDoQaIbHPb9kh8VDw0x2aE6Y7kkOFpBQ?usp=sharing">:open_file_folder:</a>
+Finally, we also release the maven projects (RAW DATA) that have been used in this study here: <a href="https://drive.google.com/drive/folders/100MjGJSxqqurSd8EoxJK98DA9hrKQIVc?usp=sharing">:open_file_folder:</a>
 
-<b><i>NB: For each project, we store the test suite results when running copilot on the variations of the code descriptions.
-In details, you will find several text files reporting the results after the test suite has been run for each project folder, considering that specific instance. E.g., *result_test_robustness_WorkflowRemoverTest_parseParameters_Original.txt* contains the results of the parseParameters method with the orginal code summary, whose test case can be found in the test class WorkFlowRemoverTest.</i></b>
+<b><i>NB: For each project, we store the test suite results when running copilot on the variations of the code descriptions. In detail, you will find several text files reporting the results after the test suite has been run for each project folder, considering that specific instance. E.g., *result_test_robustness_WorkflowRemoverTest_parseParameters_Original.txt* contains the results of the parseParameters method with the original code summary, whose test case can be found in the test class WorkFlowRemoverTest..</i>
+</b>
