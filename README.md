@@ -30,7 +30,7 @@ In this regard, the study has been conducted targeting java as programming langu
 
 ----------------
 
-Finally, we also release the maven projects (RAW DATA) that have been used in this study here: <a href="https://drive.google.com/drive/folders/100MjGJSxqqurSd8EoxJK98DA9hrKQIVc?usp=sharing">:open_file_folder:</a>
+Finally, we also release the maven projects (RAW DATA) that have been used in this study here: <a href="https://drive.google.com/drive/folders/1-GzsIS0catAlxki1VjHQHGIetrRDh0Gt?usp=sharing">:open_file_folder:</a>
 
 <b><i>NB: For each project, we store the test suite results when running copilot on the variations of the code descriptions. In detail, you will find several text files reporting the results after the test suite has been run for each project folder, considering that specific instance. E.g., *result_test_robustness_WorkflowRemoverTest_parseParameters_Original.txt* contains the results of the parseParameters method with the original code summary, whose test case can be found in the test class WorkFlowRemoverTest..</i>
 </b>
